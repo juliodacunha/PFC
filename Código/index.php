@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<!-- PARTE DO LOGIN --!>
+<!-- PARTE DO LOGIN -->
 <div class="container">
     <div class="wrapper fadeInDown align-self-center">
         <div id="formContent">
@@ -32,9 +32,9 @@
         </div>
     </div>
 </div>
-<!-- FIM DO LOGIN --!>
+<!-- FIM DO LOGIN -->
 
-<!-- CAROUSEL --!>
+<!-- CAROUSEL -->
 
 
 
