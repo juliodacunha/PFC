@@ -283,6 +283,10 @@ input[type=password]:placeholder {
     animation-delay: 0.6s;
 }
 
+.logo {
+    width:130px;
+    height: 130px;
+}
 
 
 /*# sourceMappingURL=bootstrap.min.css.map */
