@@ -1,56 +1,6 @@
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Gerenciador de vans</title>
+<?php include ("header.php") ?>
 
-    <!-- CSS do Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- JS Bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link rel="icon" href="img/logo.png">
-</head>
-<header>
-    <!-- Menu -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="img/logo.png" id="icon" alt="Icon" class="logo" style="width: 100px; height: 100px;"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Página Inicial <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Seu Perfil</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Empresas
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Suas Atividades</a>
-          <a class="dropdown-item" href="#">Atividade Financeira</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Empresas cadastratadas</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Sobre nós</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="A procura de algo..." aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busca</button>
-    </form>
-  </div>
-</nav>
-</header>
 <body>
-
-
 
 <div id="carousel-index" class="carousel slide carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -137,17 +87,18 @@
 <div class="process">
     <div class="process-row">
         <div class="process-step">
-            <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-user fa-3x"></i></button>
-            <p>Organizaçao</p>
+            <a href="#" style="text-decoration: none; color: black;"><button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-user fa-3x"></i></button>
+            <p>Login</p></a>
+        </div>        
+        <div class="process-step">
+            <a href="#" style="text-decoration: none; color: black;"><button type="button" class="btn btn-default btn-circle ml-5" disabled="disabled"><i class="fas fa-user-cog fa-3x"></i></button>
+            <p class="ml-5">Página do usuário</p></a>
         </div>
         <div class="process-step">
-            <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-comments-o fa-3x"></i></button>
-            <p>Rapida comunicaçao</p>
+            <a href="#" style="text-decoration: none; color: black;"><button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa fa-registered fa-3x"></i></button>
+            <p>Registre-se</p></a>
         </div>
-        <div class="process-step">
-            <button type="button" class="btn btn-success btn-circle" disabled="disabled"><i class="fa fa-eur fa-3x"></i></button>
-            <p>Agilidade</p>
-        </div>
+
     </div>
 </div>
 </section>

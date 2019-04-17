@@ -1,20 +1,20 @@
-<footer class="page-footer font-small blue-grey lighten-5" style="background-color: #cee97f;">
+<footer class="page-footer font-small blue-grey lighten-5" style="background-color: #f1fbf4;">
 <div>
-<div class="container" style="background-color: #cee97f;">
+<div class="container" style="background-color: #f1fbf4;">
 
         <!-- Grid row-->
         <div class="row py-4 d-flex align-items-center">
 
           <!-- Grid column -->
           <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0" >
-            <h6 class="mb-0">Conecte-se conosco nas redes sociais!</h6>
+            <h6 class="mb-0"></h6>
           </div>
         </div>
 </div> 
 </div>         
 </footer>
 <!-- Footer style="background-color: #cee97f;"-->
-<footer class="page-footer font-small blue-grey lighten-5" style="background-color: #eaeaea;">
+<footer class="page-footer font-small blue-grey lighten-5" style="background-color: #f6f6f6;">
 
     <div >
       <div class="container">
@@ -23,27 +23,7 @@
 
           <div class="col-md-6 col-lg-7 text-center text-md-right">
 
-            <!-- Facebook -->
-            <a class="fb-ic">
-              <i class="fab fa-facebook-f white-text mr-4"> </i>
-            </a>
-            <!-- Twitter -->
-            <a class="tw-ic">
-              <i class="fab fa-twitter white-text mr-4"> </i>
-            </a>
-            <!-- Google +-->
-            <a class="gplus-ic">
-              <i class="fab fa-google-plus-g white-text mr-4"> </i>
-            </a>
-            <!--Linkedin -->
-            <a class="li-ic">
-              <i class="fab fa-linkedin-in white-text mr-4"> </i>
-            </a>
-            <!--Instagram-->
-            <a class="ins-ic">
-              <i class="fab fa-instagram white-text"> </i>
-            </a>
- 
+            
           </div>
           <!-- Grid column -->
 
@@ -140,8 +120,7 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
-      <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-    </div>
+    <div class="footer-copyright text-center text-black-50 py-3">© 2019 Copyright
+        </div>
     <!-- Copyright -->
   </footer>
