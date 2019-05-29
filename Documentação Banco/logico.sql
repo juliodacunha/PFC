@@ -1,7 +1,8 @@
 CREATE TABLE empresas (
 id_empresa int(2) not null AUTO_INCREMENT PRIMARY KEY,
-cnpj int(14) unique not null,
-nome varchar(40) not null
+nome varchar(40) not null,
+cnpj int(14) unique not null
+
 );
 
 CREATE TABLE veiculos (
@@ -21,11 +22,12 @@ CREATE TABLE enderecos(
 id_end_passageiro int(5) not null AUTO_INCREMENT PRIMARY KEY,
 passageiro_id int(5),
 cep int(7) unique not null,
-estado varchar(20) not null,
-cidade varchar(50) not null,
 rua varchar(50) not null,
 numero int(6) not null,
-complemento varchar(40) not null
+complemento varchar(40) not null,
+bairro varchar(50) not null,
+cidade varchar(50) not null,
+estado varchar(20) not null
 );
 
 CREATE TABLE motoristas (
@@ -67,9 +69,10 @@ tipuser_tip_user int(1),
 cpf int(11) unique not null,
 rg int(7) unique not null,
 email varchar(40) unique not null,
+sexo varchar(10) not null,
 nome varchar(40) not null,
-senha varchar(20) not null,
-sobrenome varchar(15) not null
+sobrenome varchar(15) not null,
+senha varchar(20) not null
 );
 
 CREATE TABLE tipo_usuarios (
@@ -80,4 +83,3 @@ descricao varchar(40) not null
 ALTER TABLE enderecos ADD FOREIGN KEY(passageiro_id) REFERENCES passageiros (id_passageiro);
 ALTER TABLE motoristas ADD FOREIGN KEY(user_iduser) REFERENCES usuarios (id_usuario);
 ALTER TABLE usuarios ADD FOREIGN KEY(tipuser_tip_user) REFERENCES tipo_usuarios (tip_user);
-
