@@ -24,11 +24,19 @@ class Cadastro_model extends CI_Model{
         $endereco_input['id_passageiro_id'] = $id_passageiro;
         $this->db->insert('enderecos',$endereco_input);
 
+    }
+
+    public function cadastro_motorista_form($usuario_input, $motorista_input, $endereco_input){
 
 
+        $this->db->insert('usuarios',$usuario_input);
+        $id_usuario = $this->db->insert_id();
+
+        $motorista_input['user_iduser'] = $id_usuario;
+        $this->db->insert('motoristas', $motorista_input);
+        $id_motorista = $this->db->insert_id();
 
 
-
-          }
+    }
 
 }

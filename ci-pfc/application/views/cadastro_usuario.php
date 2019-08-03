@@ -105,65 +105,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <!-- REGISTRO DE MOTORISTA -->
         </div>
         <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <form action="<?= base_url() ?>Cadastro_usuario/cadastrarMotorista" method="post">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <h3 class="register-heading">Cadastre-se como um motorista</h3>
             <div class="row register-form">
+                <input type="hidden" id="tipuser_tip_user" name="tipuser_tip_user" value="2">
+                <input type="hidden" id="emp_cod_empresa" name="emp_cod_empresa" value="1">
+                <input type="hidden" id="ativo" name="ativo" value="1">
+                <input type="hidden" id="emp_idempresa" name="emp_idempresa" value="1">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Primeiro nome *" value="" />
+                        <input type="text" class="form-control" placeholder="Primeiro nome *" value="" name="nome" id="nome"/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Ultimo nome *" value="" />
+                        <input type="text" class="form-control" placeholder="Ultimo nome *" value="" name="sobrenome" id="sobrenome"/>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Senha *" value="" />
+                        <input type="password" class="form-control" placeholder="Senha *" value="" name="senha" id="senha"/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control"  placeholder="RG *" value="" />
+                        <input type="text" class="form-control"  placeholder="RG *" value="" name="rg" id="rg"/>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control"  placeholder="CPF *" value="" />
-                    </div>
+
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email *" value="" />
+                        <input type="text" class="form-control"  placeholder="CPF *" value="" name="cpf" id="cpf"/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Rua *" value="" />
+                        <input type="email" class="form-control" placeholder="Email *" value="" name="email" id="email"/>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Número da residência *" value="" />
+                        <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Telefone *" value="" name="telefone" id="telefone" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control"  placeholder="Complemento *" value="" />
+                        <input type="text" minlength="10" maxlength="10" name="cnh" id="cnh" class="form-control" placeholder="CNH *" value="" />
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control"  placeholder="Bairro *" value="" />
-                    </div>
+
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Cidade *" value="" />
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Estado *" value="" />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Telefone *" value="" />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" minlength="10" maxlength="10" name="cnh" class="form-control" placeholder="CNH *" value="" />
-                    </div>
+
+
 
                     <div class="form-group">
                         <div class="maxl">
                             <label class="radio inline">
-                                <input type="radio" name="gender" value="Masculino" checked>
+                                <input type="radio" name="sexo" id="sexo" value="Masculino" checked>
                                 <span> Masculino </span>
                             </label>
                             <label class="radio inline">
-                                <input type="radio" name="gender" value="Feminino">
+                                <input type="radio" name="sexo" id="sexo" value="Feminino">
                                 <span>Feminino </span>
                             </label>
                         </div>
@@ -173,6 +164,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <input type="submit" class="btnRegister" style="float: right"  value="Registrar"/>
         </div>
+    </form>
     </div>
 </div>
 
@@ -182,56 +174,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-    <!--
-<div class="container">
-    <div class="card w-50 mx-auto my-5">
-        <article class="card-body mx-auto" style="">
-            <h4 class="card-title mt-3 text-center">Criar conta</h4>
-            <form action="<?= base_url() ?>Cadastro_usuario/cadastrar" method="post">
-                <div class="form-group">
-                    <label for="tipuser_tip_user">Você é: </label>
-                    <select id="tipuser_tip_user" name="tipuser_tip_user">
-                        <option value="1">Aluno</option>
-                        <option value="2">Motorista</option>
-                        <option value="3">Dono de empresa</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="Apenas números" name="cpf" required>
-                </div>
-                <div class="form-group">
-                    <label for="rg">RG</label>
-                    <input type="text" class="form-control" id="rg" placeholder="Apenas números" name="rg" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Endereço de email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email@email.com" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="sexo">Sexo</label>
-                    <select id="sexo" name="sexo">
-                        <option value="1">Masculino</option>
-                        <option value="2">Feminino</option>
-                        <option value="3">Outros</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Primeiro nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="nome">Sobrenome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Sobrenome" name="sobrenome" required>
-                </div>
-                <div class="form-group">
-                    <label for="senha">Senha</label>
-                    <input type="password" class="form-control" id="senha" placeholder="Senha" name="senha" required>
-                </div>
-                <button type="submit" class="btn btn-success">Enviar</button>
-            </form>
-        </article>
-    </div> <!-- card.// -->
 </div>
 
