@@ -25,7 +25,7 @@
                     <a class="nav-link" href="<?= base_url()?>" >Página Inicial <span class="sr-only">Página inicial</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Seu Perfil</a>
+                <?php echo anchor('Pagina_usuario', 'seu perfil', array('class' => 'nav-link')  ); ?>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

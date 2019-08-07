@@ -66,9 +66,9 @@ class Cadastro_usuario extends CI_Controller
 
         $checking_insert = $this->model_cadastro->cadastro_usuario_form($usuario_input, $passageiro_input, $endereco_input);
         if ($checking_insert) {
-            redirect(base_url('Login.php'));
+            redirect('Erro_cadastro');
         } else {
-            redirect(base_url('Login.php'));
+            redirect('Pagina_usuario');
         }
     }
 
@@ -94,7 +94,7 @@ class Cadastro_usuario extends CI_Controller
             $motorista_input['emp_idempresa'] = $this->input->post('emp_idempresa');
             $motorista_input['id_motorista'] = $this->input->post('id_motorista');
             $motorista_input['user_iduser'] = $this->input->post('user_iduser');
-
+            
             $endereco_input['cep'] = $this->input->post('cep');
             $endereco_input['rua'] = $this->input->post('rua');
             $endereco_input['numero'] = $this->input->post('numero');
@@ -110,9 +110,9 @@ class Cadastro_usuario extends CI_Controller
 
             $checking_insert = $this -> model_cadastro -> cadastro_motorista_form($usuario_input, $motorista_input, $endereco_input);
             if($checking_insert){
-                redirect(base_url('Login.php'));
+                redirect('Erro_cadastro');
             }else{
-                redirect(base_url('Login.php'));
+                redirect('Pagina_usuario');
             }
 
     }
