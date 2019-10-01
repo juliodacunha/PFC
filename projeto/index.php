@@ -1,7 +1,8 @@
 <?php
-
+session_start();
+require('funcoes/Login.php');
 if (isset($_SESSION['email'])) {
-    echo "Welcome to the member's area, " . $_SESSION['nome'] . "!";
+    header('Location: paginas/perfil.php');
 } else {
     header('Location: paginas/login.php');
 }

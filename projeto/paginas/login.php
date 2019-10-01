@@ -1,6 +1,12 @@
 <?php
+error_reporting(0);
 require("head.php");
 require("cabecalho.php");
+require("../funcoes/Conexao.php");
+require("../funcoes/Login.php");
+if(isset($_SESSION['email'])){
+//header('Location: perfil.php');
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +25,13 @@ require("cabecalho.php");
                     <h4 class="register-heading my-1 mx-auto" style=" font-family: 'CustomFont';  font-weight:normal; font-style:normal; font-size:40PX; text-align: center;"> Login </h3>
 
                 </div>
-                <form>
+                <form action="login.php" method="POST"> 
                     <div class="form-group">
-                        <input type="email" id="login" class="fadeIn second" name="email" placeholder="email@email.com">
-                        <input type="password" id="senha" class="fadeIn third" name="login" placeholder="******">
-                        <a href="#"><input type="submit" class="fadeIn fourth" value="entrar"></a>
+                        <input type="email" id="email" class="fadeIn second" name="email" placeholder="email@email.com">
+                        <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="******">
+                        <input type="submit" class="fadeIn fourth" value="entrar">
                 </form>
+                
 
                 <!-- Senha e registrar -->
                 <div id="formFooter">

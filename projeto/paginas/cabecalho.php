@@ -1,4 +1,6 @@
 <?php
+session_start();
+include("../funcoes/Conexao.php");
 require("head.php");
 ?>
 
@@ -35,10 +37,13 @@ require("head.php");
 <?php
 if (isset($_SESSION['email'])) {
 echo '<nav>
-    <p>Bem vindo, '.$email.'</p>
+    <p>Bem vindo, '.$_SESSION['email']. '.</p>
     </nav>';
+    ?>
+    <a href="../funcoes/Logout.php" class="mb-3 ml-2" >Sair</a>
+    <?php
 }else{
-    echo '<a style="float:right" href="login.php">Faça o login</a>';
+    echo '<a style="float:right" href="../index.php">Faça o login</a>';
 }
 ?>
 
