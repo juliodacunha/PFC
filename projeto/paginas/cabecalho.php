@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include("../funcoes/Conexao.php");
 require("head.php");
 ?>
