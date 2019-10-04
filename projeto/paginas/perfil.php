@@ -1,4 +1,5 @@
 <?php
+
 include('../funcoes/Verifica_login.php');
 require("head.php");
 require("cabecalho.php");
@@ -8,17 +9,35 @@ $email = $_SESSION['email'];
 $result = $conexao->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, curso, turma, matricula, cep, rua, numero, bairro, cidade, estado, complemento
 from usuarios, passageiros, enderecos 
 where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_passageiro_id") or die($conexao->error);
+$arrayPassageiro = $result->fetch_assoc();
 
-//Abaixo um teste: apenas executar quando estiver codando
-//print_r($resultPass);
-//print_r($result->fetch_assoc());
+//Abaixo perfil motorista
+$resultMotorista = $conexao->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, cnh
+from usuarios, motoristas
+where email = '$email' and user_iduser = id_usuario") or die($conexao->error);
+$arrayMotorista = $resultMotorista->fetch_assoc();
+
+//IF para nao dar erro no HTML caso o usuário seja um passageiro e nao um motorista.
+if($arrayMotorista == null){
+  $arrayMotorista = array();
+}
+
+//Verificar se o perfil é de motorista ou passageiro e exibir os dados
+if (array_key_exists("cnh", $arrayMotorista)) {
+  //echo "O elemento 'cnh' está no array!";
+  $row = $arrayMotorista;
+  $validar = 0;
+}elseif(array_key_exists("matricula", $arrayPassageiro)){
+  //echo "O usuário é um passageiro";
+  $validar = 1;
+}
+
 ?>
 
 <html lang="en">
 <head>
     <title>Meu perfil</title>
 </head>
-
 <!-- PARTE DA PÁGINA -->
 <div class="container">
       <div class="row">
@@ -27,12 +46,12 @@ where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_pas
         <div class="toppad" >
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title my-3 mb-5">NOME USUÁRIO</h3>
+              <h3 class="panel-title my-3 mb-5"><?php echo $row['nome']?> <?php echo $row['sobrenome']; ?></h3>
             </div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#" class="img-circle img-responsive"> </div>
-                <?php $row = $result->fetch_assoc() ?>
+                
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
@@ -48,7 +67,6 @@ where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_pas
                         <td>CPF</td>
                         <td><?php echo $row['cpf']; ?></td>
                       </tr>
-                   
                          <tr>
                              <tr>
                         <td>RG</td>
@@ -66,6 +84,9 @@ where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_pas
                         <td>Senha</td>
                         <td><?php echo $row['senha']; ?></td>                           
                       </tr>
+
+                      <?php if(isset ($row['curso'])): ?>
+
                       <tr>
                         <td>Curso</td>
                         <td><?php echo $row['curso']; ?></a></td>
@@ -106,18 +127,23 @@ where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_pas
                         <td>Complemento</td>
                         <td><?php echo $row['complemento']; ?></td>        
                       </tr>
-                      <?php //endwhile; ?>
 
+                      <?php endif; ?>
+                      <?php if(isset ($row['cnh'])): ?>
+
+                      <tr>
+                        <td>CNH</td>
+                        <td><?php echo $row['cnh']; ?></td>        
+                      </tr>
+
+                      <?php endif; ?>
+                      
                     </tbody>
                   </table>
-                  
-                
                   <a href="#" class="btn btn-primary">Guardar alterações</a>
                 </div>
               </div>
-            </div>
-                
-            
+            </div>  
           </div>
         </div>
       </div>
