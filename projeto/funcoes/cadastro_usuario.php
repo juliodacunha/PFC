@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+
 
 $link = mysqli_connect("localhost", "root", "", "pfc");
 if($link === false){
@@ -53,8 +53,8 @@ if(mysqli_query($link, $sql4)){
 }elseif(mysqli_query($link, $sql)){
     echo "Registrado";
 }else{
-    //echo "Error: " . $sql4 . "<br>" .
-    //mysqli_error($link);
+    echo "Error: " . $sql4 . "<br>" .
+    mysqli_error($link);
 }
 
 // Fechar conexão

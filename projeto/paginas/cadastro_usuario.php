@@ -24,7 +24,7 @@ require("../funcoes/cadastro_usuario.php");
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <form action="cadastro_usuario.php" method="post" name="registroPassageiro">
-                <div class="alert alert-error"><?= $_SESSION['message']; ?></div>
+                <div class="alert alert-error"></div>
                 <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Cadastre-se como um aluno</h3>
                 <div class="row register-form">
                     <input type="hidden" id="tipuser_tip_user" name="tipuser_tip_user" value="1">
@@ -155,7 +155,7 @@ require("../funcoes/cadastro_usuario.php");
                             </div>
                         </div>
                     </div>
-                    <input type="submit" class="btnRegister" style="float: right" name="registrar" value="Registrar"/>
+                    <input type="submit" class="btnRegister" style="float: right" name="registrarmotorista" value="Registrar"/>
                 </div>
             </form>
         </div>
