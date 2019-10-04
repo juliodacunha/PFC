@@ -64,3 +64,7 @@ if(isset($_GET['mes'])){
 
 ?>
 
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

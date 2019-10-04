@@ -5,7 +5,8 @@ require("cabecalho.php");
 require("../funcoes/Conexao.php");
 require("../funcoes/Login.php");
 if(isset($_SESSION['email'])){
-//header('Location: perfil.php');
+    header('Location: perfil.php');
+    exit();
 }
 ?><!DOCTYPE html>
 <html lang="en">
