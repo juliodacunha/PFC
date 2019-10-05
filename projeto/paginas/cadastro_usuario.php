@@ -43,7 +43,7 @@ require("../funcoes/cadastro_usuario.php");
                             <input type="text" class="form-control"  placeholder="RG *" id="rg" name="rg" required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="CPF *" id="cpf" name="cpf" required/>
+                            <input type="text" class="form-control"  placeholder="CPF *" id="cpf" name="cpf" maxlength="11" required/>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -75,7 +75,7 @@ require("../funcoes/cadastro_usuario.php");
                             <input type="text" class="form-control" placeholder="Estado *" id="estado" name="estado" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" placeholder="Telefone *" id="telefone" name="telefone" required />
+                            <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" placeholder="Telefone *" id="uintTextBox" name="telefone" required />
                         </div>
                         <div class="form-group">
                             <input type="text" minlength="3" maxlength="10" name="turma" class="form-control" placeholder="Turma *" id="turma" name="turma" required />
@@ -155,7 +155,7 @@ require("../funcoes/cadastro_usuario.php");
                             </div>
                         </div>
                     </div>
-                    <input type="submit" class="btnRegister" style="float: right" name="registrarmotorista" value="Registrar"/>
+                    <input type="submit" class="btnRegister" style="float: right" name="submit" value="Registrar"/>
                 </div>
             </form>
         </div>

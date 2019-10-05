@@ -13,7 +13,7 @@ $row = mysqli_num_rows($result);
 if($row == 1){
 //quando ==1, significa que o usuário está autenticado
     $_SESSION['email'] = $email;
-    header('Location: perfil.php'); 
+    header('Location: ../paginas/perfil.php'); 
     exit(); 
 }else{
 //usuário nao autenticado

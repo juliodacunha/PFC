@@ -28,7 +28,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
   $row = $arrayMotorista;
   $validar = 0;
 }elseif(array_key_exists("matricula", $arrayPassageiro)){
-  //echo "O usuário é um passageiro";
+  $row = $arrayPassageiro;
   $validar = 1;
 }
 
