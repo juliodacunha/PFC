@@ -3,6 +3,7 @@ session_start();
 include('Conexao.php');
 
 if (!isset($_SESSION['email'])) {
+    
     $email = mysqli_real_escape_string($conexao, $_POST['email']);
     $senha = mysqli_real_escape_string($conexao, $_POST['senha']);
 
@@ -16,10 +17,11 @@ if (!isset($_SESSION['email'])) {
     if($row == 1){
     //quando ==1, significa que o usuário está autenticado
         $_SESSION['email'] = $email;
-        header('Location: paginas/perfil.php'); 
+        header('Location: ../paginas/perfil.php'); 
         exit(); 
     }else{
     //usuário nao autenticado
     }
+    
 }
 ?>

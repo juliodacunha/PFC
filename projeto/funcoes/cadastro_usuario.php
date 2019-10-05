@@ -64,15 +64,18 @@ if(isset($_POST['submit'])){
     $sql = "INSERT INTO usuarios (tipuser_tip_user, cpf, rg, email, nome, sobrenome, sexo, telefone, senha) 
     VALUES (1, '$cpf', '$rg', '$email', '$nome', '$sobrenome', '$sexo', '$telefone', '$senha')";
     mysqli_query($link, $sql);
+    echo $sql;
 
     $sql2 = "INSERT INTO passageiros (emp_cod_empresa, id_usuario_id, turma, curso, matricula) 
     VALUES ('1', last_insert_id(), '$turma', '$curso', '$matricula')";
     mysqli_query($link, $sql2);
+    echo $sql2;
 
     if(isset($matricula)){
         $sql3 = "INSERT INTO enderecos (id_passageiro_id, cep, rua, numero, complemento, bairro, cidade, estado) 
         VALUES (last_insert_id(), '$cep', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado')";
         mysqli_query($link, $sql3);
+        echo $sql3;
     }
 
 }else{}

@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting();
 require("head.php");
 require("cabecalho.php");
 require("../funcoes/Conexao.php");
