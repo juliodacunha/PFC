@@ -3,7 +3,7 @@
 include("../funcoes/Conexao.php");
 require("head.php");
 ?>
-
+<body>
 <header>
     <!-- Menu -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f6f6f6">
