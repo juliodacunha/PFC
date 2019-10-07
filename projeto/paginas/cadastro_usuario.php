@@ -1,10 +1,9 @@
 <?php
-
 require("head.php");
 require("cabecalho.php");
 require("../funcoes/cadastro_usuario.php");
-
 ?>
+
 <html lang="en">
 <head>
     <title>Cadastro de usuário</title>
@@ -31,19 +30,19 @@ require("../funcoes/cadastro_usuario.php");
                     <input type="hidden" id="emp_cod_empresa" name="emp_cod_empresa" value="1">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Primeiro nome *" id="nome" name="nome" required/>
+                            <input type="text" class="form-control" placeholder="Primeiro nome *" id="nome" name="nome" required maxlength="15">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Ultimo nome *" id="sobrenome" name="sobrenome" required/>
+                            <input type="text" class="form-control" placeholder="Ultimo nome *" id="sobrenome" name="sobrenome" required maxlength="15">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Senha *" id="senha" name="senha" required/>
+                            <input type="password" class="form-control" placeholder="Senha *" id="senha" name="senha" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="RG *" id="rg" name="rg" required/>
+                            <input type="text" class="form-control"  placeholder="RG *" id="rg" name="rg" required maxlength="7"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="CPF *" id="cpf" name="cpf" maxlength="11" required/>
+                            <input type="text" class="form-control"  placeholder="CPF *" id="cpf" name="cpf" maxlength="11" required />
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -51,31 +50,31 @@ require("../funcoes/cadastro_usuario.php");
                             <input type="email" class="form-control" placeholder="Email *" id="email" name="email" required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="CEP *" id="cep" name="cep" required />
+                            <input type="text" class="form-control" placeholder="CEP *" id="cep" name="cep" required maxlength="8" />
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Rua *" id="rua" name="rua" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Número da residência *" id="numero" name="numero" required />
+                            <input type="text" class="form-control" placeholder="Número da residência *" id="numero" name="numero" required maxlength="5"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="Complemento *" id="complemento" name="complemento" required />
+                            <input type="text" class="form-control"  placeholder="Complemento *" id="complemento" name="complemento" required maxlength="15" />
                         </div>
 
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="Bairro *" id="bairro" name="bairro" required />
+                            <input type="text" class="form-control"  placeholder="Bairro *" id="bairro" name="bairro" required maxlength="15"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Cidade *" id="cidade" name="cidade" required />
+                            <input type="text" class="form-control" placeholder="Cidade *" id="cidade" name="cidade" required maxlength="15"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Estado *" id="estado" name="estado" required />
+                            <input type="text" class="form-control" placeholder="Estado *" id="estado" name="estado" required maxlength="2"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" placeholder="Telefone *" id="uintTextBox" name="telefone" required />
+                            <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" placeholder="Telefone *" name="telefone" required />
                         </div>
                         <div class="form-group">
                             <input type="text" minlength="3" maxlength="10" name="turma" class="form-control" placeholder="Turma *" id="turma" name="turma" required />
@@ -124,12 +123,12 @@ require("../funcoes/cadastro_usuario.php");
                                 <input type="password" class="form-control" placeholder="Senha *" value="" name="senha" id="senha"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control"  placeholder="RG *" value="" name="rg" id="rg"/>
+                                <input type="text" class="form-control"  placeholder="RG *" value="" name="rg" id="rg" maxlength="7"/>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control"  placeholder="CPF *" value="" name="cpf" id="cpf"/>
+                                <input type="text" class="form-control"  placeholder="CPF *" value="" name="cpf" id="cpf" maxlength="11"/>
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Email *" value="" name="email" id="email"/>

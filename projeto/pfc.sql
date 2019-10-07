@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 01/10/2019 às 02:45
--- Versão do servidor: 10.4.6-MariaDB
--- Versão do PHP: 7.3.9
+-- Host: localhost:3306
+-- Tempo de geração: 07/10/2019 às 10:56
+-- Versão do servidor: 5.7.24-0ubuntu0.18.04.1
+-- Versão do PHP: 7.2.13-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -51,7 +49,7 @@ CREATE TABLE `empresas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `empresas`
+-- Fazendo dump de dados para tabela `empresas`
 --
 
 INSERT INTO `empresas` (`id_empresa`, `cnpj`, `nome`) VALUES
@@ -76,11 +74,12 @@ CREATE TABLE `enderecos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `enderecos`
+-- Fazendo dump de dados para tabela `enderecos`
 --
 
 INSERT INTO `enderecos` (`id_end_passageiro`, `id_passageiro_id`, `cep`, `rua`, `numero`, `bairro`, `estado`, `cidade`, `complemento`) VALUES
-(86, 59, 123, 'ae', 1, 'ae', 'ae', 'ae', 'ae');
+(86, 59, 123, 'ae', 1, 'ae', 'ae', 'ae', 'ae'),
+(96, 68, 17283912, 'adjisi', 2, 'asdbdfhi', 'ba', 'basdhia', 'agsdhi');
 
 -- --------------------------------------------------------
 
@@ -97,12 +96,13 @@ CREATE TABLE `motoristas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `motoristas`
+-- Fazendo dump de dados para tabela `motoristas`
 --
 
 INSERT INTO `motoristas` (`id_motorista`, `emp_idempresa`, `user_iduser`, `cnh`, `ativo`) VALUES
 (37, 1, 141, 1123123123, 1),
-(39, 1, 143, 1231312312, 1);
+(39, 1, 143, 1231312312, 1),
+(41, 1, 155, 7128937128, 1);
 
 -- --------------------------------------------------------
 
@@ -114,17 +114,18 @@ CREATE TABLE `passageiros` (
   `id_passageiro` int(5) NOT NULL,
   `emp_cod_empresa` int(2) DEFAULT NULL,
   `id_usuario_id` int(8) DEFAULT NULL,
-  `matricula` int(10) NOT NULL,
+  `matricula` bigint(10) NOT NULL,
   `curso` varchar(40) NOT NULL,
   `turma` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `passageiros`
+-- Fazendo dump de dados para tabela `passageiros`
 --
 
 INSERT INTO `passageiros` (`id_passageiro`, `emp_cod_empresa`, `id_usuario_id`, `matricula`, `curso`, `turma`) VALUES
-(59, 1, 139, 1231231231, 'ae55', 'aeaea');
+(59, 1, 139, 1231231231, 'ae55', 'aeaea'),
+(68, 1, 153, 1283901281, '128390128301283', '3info2');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ CREATE TABLE `tipo_usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `tipo_usuarios`
+-- Fazendo dump de dados para tabela `tipo_usuarios`
 --
 
 INSERT INTO `tipo_usuarios` (`tip_user`, `descricao`) VALUES
@@ -165,13 +166,15 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Fazendo dump de dados para tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `tipuser_tip_user`, `cpf`, `rg`, `email`, `nome`, `sobrenome`, `sexo`, `telefone`, `senha`) VALUES
-(139, 1, 123123, 123123, 'ae@ae', 'oi', 'oi', 'Masculino', 12312365767, '28dd2c7955ce926456240b2ff0100bde'),
+(139, 1, 123123, 123123, 'ae@ae', 'oi', 'oi', 'Masculino', 12312365767, '123'),
 (141, 1, 123, 123, '123@123', 'nome', 'sobrenome', 'Masculino', 1231231231, '7812e8b74f6837fba66f86fe86688a2b'),
-(143, 1, 14141414141, 123123123, 'a@a', 'nome', 'senha', 'Masculino', 1231231232, '0cc175b9c0f1b6a831c399e269772661');
+(143, 1, 14141414141, 123123123, 'a@a', 'nome', 'senha', 'Masculino', 1231231232, '0cc175b9c0f1b6a831c399e269772661'),
+(153, 1, 81892371298, 7128903, 'ashd@asdji', 'jidkasjd', 'joasdasd', 'Masculino', 12789031273, '123'),
+(155, 1, 37812937129, 1782391, 'show@show', 'show', 'show', 'Masculino', 1273812738, '202cb962ac59075b964b07152d234b70');
 
 -- --------------------------------------------------------
 
@@ -270,43 +273,36 @@ ALTER TABLE `veiculos`
 --
 ALTER TABLE `empresas`
   MODIFY `id_empresa` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id_end_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
-
+  MODIFY `id_end_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 --
 -- AUTO_INCREMENT de tabela `motoristas`
 --
 ALTER TABLE `motoristas`
-  MODIFY `id_motorista` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
+  MODIFY `id_motorista` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de tabela `passageiros`
 --
 ALTER TABLE `passageiros`
-  MODIFY `id_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
+  MODIFY `id_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT de tabela `tipo_usuarios`
 --
 ALTER TABLE `tipo_usuarios`
   MODIFY `tip_user` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
-
+  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 --
 -- AUTO_INCREMENT de tabela `veiculos`
 --
 ALTER TABLE `veiculos`
   MODIFY `id_veiculo` int(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- Restrições para dumps de tabelas
 --
@@ -351,7 +347,6 @@ ALTER TABLE `usuarios`
 ALTER TABLE `veiculos`
   ADD CONSTRAINT `veiculos_ibfk_1` FOREIGN KEY (`cnpj`) REFERENCES `empresas` (`id_empresa`),
   ADD CONSTRAINT `veiculos_ibfk_2` FOREIGN KEY (`cod_empresa`) REFERENCES `empresas` (`id_empresa`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

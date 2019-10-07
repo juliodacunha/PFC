@@ -50,14 +50,14 @@ if (array_key_exists("cnh", $arrayMotorista)) {
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="#" class="img-circle img-responsive"> </div>
+                 <div class="col-md-3 col-lg-3 " align="center"> <!--<img alt="User Pic" src="#" class="img-circle img-responsive"> --></div> 
                 
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
                         <td>Nome:</td>
-                        <td><?php echo $row['nome']; ?></td>
+                        <td><?php echo $row['nome']; ?></td>                      
                       </tr>
                       <tr>
                         <td>Sobrenome:</td>
@@ -140,9 +140,19 @@ if (array_key_exists("cnh", $arrayMotorista)) {
                       
                     </tbody>
                   </table>
-                  <a href="#" class="btn btn-primary">Guardar alterações</a>
+                  <a href="perfil.php?edit<?php echo $row['id']; ?> " class="btn btn-primary" name="editar">Editar</a>               
                 </div>
               </div>
+
+              <div class="row">
+                <form action="../funcoes/Perfil.php" method="POST">
+                  <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" class="form-control" value="<?php echo $row['nome']; ?>" placeholder="Nome">
+                  </div>
+                </form>
+              </div>
+
             </div>  
           </div>
         </div>
