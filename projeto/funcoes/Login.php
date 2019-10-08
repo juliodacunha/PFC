@@ -1,7 +1,8 @@
 <?php
 session_start();
-include('Conexao.php');
 
+
+if(isset($_POST['logar'])){
 if (!isset($_SESSION['email'])) {
     
     $email = mysqli_real_escape_string($conexao, $_POST['email']);
@@ -22,6 +23,6 @@ if (!isset($_SESSION['email'])) {
     }else{
     //usuário nao autenticado
     }
-    
+}
 }
 ?>

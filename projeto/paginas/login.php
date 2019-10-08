@@ -2,7 +2,6 @@
 error_reporting();
 require("head.php");
 require("cabecalho.php");
-require("../funcoes/Conexao.php");
 require("../funcoes/Login.php");
 if(isset($_SESSION['email'])){
     header('Location: perfil.php');
@@ -30,7 +29,7 @@ if(isset($_SESSION['email'])){
                     <div class="form-group">
                         <input type="email" id="email" class="fadeIn second" name="email" placeholder="email@email.com">
                         <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="******">
-                        <input type="submit" class="fadeIn fourth" value="entrar">
+                        <input type="submit" class="fadeIn fourth" value="entrar" name="logar">
                 </form>
                 
 
