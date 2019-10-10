@@ -2,6 +2,7 @@
 
 include("../funcoes/Conexao.php");
 require("head.php");
+
 ?>
 <body>
 <header>
