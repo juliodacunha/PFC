@@ -1,7 +1,9 @@
 <?php
+include('../funcoes/Verifica_login.php');
 require('head.php');
 require('cabecalho.php');
 require('../funcoes/calendario.php');
+
 //MostreCalendario('05');
 //echo "<br/>";
 ?>

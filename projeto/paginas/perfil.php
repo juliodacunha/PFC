@@ -1,8 +1,13 @@
 <?php
-
-include('../funcoes/Verifica_login.php');
+if(!isset($_SESSION)){
+  session_start();
+}
 require("head.php");
 require("cabecalho.php");
+if(!$_SESSION['email']){
+  header('Location: ../index.php');
+  exit;
+}
 $id_usuario = $_SESSION['id'];
 
 //Abaixo o código de busca no banco de dados sobre o formulário de perfil do passageiro

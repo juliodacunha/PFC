@@ -1,9 +1,26 @@
 <?php
-
+if(!isset($_SESSION)){
+    session_start();
+}
 include("../funcoes/Conexao.php");
 require("head.php");
 
+if(isset($_SESSION['id'])){
+$id_usuario = $_SESSION['id'];
+//Código abaixo para verificar se o usuário é um motorista
+$query = "select senha, cnh from usuarios, motoristas where id_usuario = '$id_usuario'and id_usuario = user_iduser"; 
+$result = mysqli_query($conexao, $query);
+$linha = mysqli_num_rows($result);
+$rows = [];
+$linha = mysqli_fetch_assoc($result);
+$rows[] = $linha;
+$cnh = $rows[0]['cnh'];
+}
+
+
+
 ?>
+
 <body>
 <header>
     <!-- Menu -->
@@ -15,27 +32,54 @@ require("head.php");
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <!--<li class="nav-item active">
                     <a class="nav-link" href="../index.php" >Página Inicial <span class="sr-only">Página inicial</span></a>
                 </li>
                 <li class="nav-item">
-</li>
-<li class="nav-item dropdown">
+</li>-->
+<!--<li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Empresas
     </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#" >Suas Atividades</a>
         <a class="dropdown-item" href="#">Atividade Financeira</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Empresas cadastratadas</a>
-    </div>
+    </div> 
+   </li> -->
+<?php
+if(!isset($cnh)){
+    echo '
+<li class="nav-item">
+    <a class="nav-link active" href="perfil.php">Perfil</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link disabled" href="#">Sobre nós</a>
+    <a class="nav-link " href="calendario.php">Calendário</a>
 </li>
+<li class="nav-item">
+    <a class="nav-link " href="van_passageiro.php">Sua van</a>
+</li>
+';
+}
+if(isset($cnh)){
+    echo '
+<li class="nav-item">
+<a class="nav-link active" href="perfil.php">Perfil</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link " href="passageiro_pelomot.php">Todos passageiros</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link " href="van_passageiro.php">Seus passageiros</a>
+</li>
+    ';
+}
+
+?>
 </ul>
 <?php
+
 if (isset($_SESSION['email'])) {
 echo '<nav>
     <p>Bem vindo, '.$_SESSION['email']. '.</p>
