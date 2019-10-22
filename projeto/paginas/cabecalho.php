@@ -60,6 +60,7 @@ if(!isset($cnh)){
 <li class="nav-item">
     <a class="nav-link " href="van_passageiro.php">Sua van</a>
 </li>
+
 ';
 }
 if(isset($cnh)){
@@ -72,6 +73,12 @@ if(isset($cnh)){
 </li>
 <li class="nav-item">
     <a class="nav-link " href="van_passageiro.php">Seus passageiros</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link " href="aprovar_motoristas.php">Aprovar motoristas</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link " href="a.php">Aprovar passageiros</a>
 </li>
     ';
 }
