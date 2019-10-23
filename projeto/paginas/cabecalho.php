@@ -1,10 +1,10 @@
 <?php
+
+include("../funcoes/Conexao.php");
+require("head.php");
 if(!isset($_SESSION)){
     session_start();
 }
-include("../funcoes/Conexao.php");
-require("head.php");
-
 if(isset($_SESSION['id'])){
 $id_usuario = $_SESSION['id'];
 //Código abaixo para verificar se o usuário é um motorista

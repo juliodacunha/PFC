@@ -1,12 +1,12 @@
 <?php
-if(!isset($_SESSION)){
-  session_start();
-}
+//require("../funcoes/Conexao.php");
 require("head.php");
 require("cabecalho.php");
+
+
 $aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, sexo, telefone, aprovado, cnh from usuarios, motoristas where aprovado = 0 and id_usuario = user_iduser");
 ?>
-
+<div class="container">
 <table class="table">
 <thead>
     <tr>
@@ -19,24 +19,28 @@ $aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, s
       <th scope="col">Telefone</th>
       <th scope="col">CNH</th>
       <th scope="col">Aceitar</th>
+      <th></th>
     </tr>
   </thead>
-  <?php while($dado = $aprovar_motoristas->fetch_array()){ ?>
+  <?php 
+  $i = 0;
+  while($dado = $aprovar_motoristas->fetch_array()){ $i++ ?>
     <tbody>
+    <form method="GET">
     <td><?php echo $dado['nome']; ?></td>
     <td><?php echo $dado['sobrenome']; ?></td>
     <td><?php echo $dado['email']; ?></td>
-    <td><?php echo $dado['cpf']; ?></td>
+    <td><?php $cpf = $dado['cpf'];
+    echo $dado['cpf']; ?></td>
     <td><?php echo $dado['rg']; ?></td>
     <td><?php echo $dado['sexo']; ?></td>
     <td><?php echo $dado['telefone']; ?></td>
     <td><?php echo $dado['cnh']; ?></td>
-    <td><select name="aprovado">
-        <option value="0" selected>Selecione uma opção</option> 
-        <option value="1">Aprovar conta</option>
-        <option value="2">Recusar e excluir conta</option>
-        </select>
-    </td>
+    <input type="hidden" name="cpf" id="cpf" value="<?php echo $cpf; ?>">
+      <td><button type="submit" class="btn btn-primary btn-sm" name="aprovacao"> <a href="confirmar_usuario.php?cpf=<?php echo $cpf; ?>">confirmar</a></button></td>
+      <?php } ?>
+      
+    </form>
     </tbody>
-  <?php }?>
 </table>
+</div>
