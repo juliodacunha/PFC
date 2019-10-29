@@ -18,23 +18,26 @@ if(isset($_SESSION['id'])){
 if($tipo_usuario!=2){
     header('Location: ../index.php');
 }
-//linhas abaixo para descobrir o id do usuário
-$query = "select id_motorista, id_usuario, nome, email, cnh from motoristas, usuarios where cpf = '$cpf' and user_iduser = id_usuario"; 
+//descobrir ID do usuário a ser excluido
+$query = "select id_end_passageiro, id_passageiro, id_usuario, nome, email, matricula, cep from enderecos, passageiros, usuarios where cpf = '$cpf' and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id"; 
 $result = mysqli_query($conexao, $query);
 $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
 $rows[] = $linha;
-$id_motorista = $rows[0]['id_motorista'];
+print_r($rows);
+$id_end_passageiro = $rows[0]['id_end_passageiro'];
+$id_passageiro = $rows[0]['id_passageiro'];
 $id_usuario = $rows[0]['id_usuario'];
 $nome = $rows[0]['nome'];
 $email = $rows[0]['email'];
-$cnh = $rows[0]['cnh'];
+$matricula = $rows[0]['matricula'];
+$cep = $rows[0]['cep'];
 ?>
 
 <div class="container">
     <div class="col-md-12 mt-5 text-center"> 
-    <p>Você está alterando o usuário <?php echo $nome; ?>, com o email <?php echo $email; ?> e CNH <?php echo $cnh; ?>.</p>
+    <p>Você está alterando o usuário <?php echo $nome; ?>, com o email <?php echo $email; ?>, matrícula <?php echo $matricula; ?> e CEP <?php echo $cep; ?>.</p>
         <form method="POST">
              <select name="aprovarrecusar">
                 <option value="0">Selecione uma opção</option> 
@@ -54,12 +57,15 @@ if(isset($_POST['enviar'])){
     $aprovado = $_POST['aprovarrecusar'];
     if($aprovado == 2){ //funcao de excluir
         //linhas abaixo para excluir o usuário
-        $sql = "DELETE FROM motoristas WHERE id_motorista = '$id_motorista'";
+        $sql = "DELETE FROM enderecos WHERE id_end_passageiro = '$id_end_passageiro'";
         if (mysqli_query($conexao, $sql)) {
-            $sql = "DELETE FROM usuarios WHERE id_usuario = '$id_usuario'";
+            $sql = "DELETE FROM passageiros WHERE id_passageiro = '$id_passageiro'";
             if (mysqli_query($conexao, $sql)) {
-                echo "Usuário excluido com sucesso";
-                header('refresh:2; url=aprovar_motoristas.php');
+                $sql = "DELETE FROM usuarios WHERE id_usuario = '$id_usuario'";
+                if (mysqli_query($conexao, $sql)) {
+                    echo "Usuário excluido com sucesso";
+                    header('refresh:2; url=aprovar_motoristas.php');
+                }
             }
         } else {
             echo "Erro ao excluir: " . mysqli_error($conexao);
@@ -68,8 +74,8 @@ if(isset($_POST['enviar'])){
         $sql = "UPDATE usuarios SET aprovado = '$aprovado' WHERE cpf = '$cpf'";
         if (mysqli_query($conexao, $sql)) {
             echo "Confirmado! <br>";
-            header('refresh:1;url=aprovar_motoristas.php');
+            header('refresh:1;url=aprovar_passageiros.php');
         }
     }    
-}         
-?>
+}  
+?>     

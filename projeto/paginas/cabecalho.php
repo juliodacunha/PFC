@@ -78,7 +78,7 @@ if(isset($cnh)){
     <a class="nav-link " href="aprovar_motoristas.php">Aprovar motoristas</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link " href="a.php">Aprovar passageiros</a>
+    <a class="nav-link " href="aprovar_passageiros.php">Aprovar passageiros</a>
 </li>
     ';
 }
