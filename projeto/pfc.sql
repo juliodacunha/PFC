@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 22/10/2019 às 02:22
+-- Host: 127.0.0.1
+-- Tempo de geração: 02-Nov-2019 às 03:15
 -- Versão do servidor: 10.4.6-MariaDB
--- Versão do PHP: 7.3.9
+-- versão do PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,15 +25,15 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `corridas`
+-- Estrutura da tabela `corridas`
 --
 
 CREATE TABLE `corridas` (
   `id_corrida` int(10) NOT NULL,
-  `passageiro_id_passageiro` int(5) DEFAULT NULL,
+  `usuario_id_usuario` int(5) DEFAULT NULL,
   `veiculo_id_veiculo` int(4) DEFAULT NULL,
   `motorista_id_motorista` int(3) DEFAULT NULL,
-  `data` date NOT NULL,
+  `data_corrida` date NOT NULL,
   `horario_ida` time NOT NULL,
   `horario_volta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,7 +41,7 @@ CREATE TABLE `corridas` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `empresas`
+-- Estrutura da tabela `empresas`
 --
 
 CREATE TABLE `empresas` (
@@ -51,7 +51,7 @@ CREATE TABLE `empresas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `empresas`
+-- Extraindo dados da tabela `empresas`
 --
 
 INSERT INTO `empresas` (`id_empresa`, `cnpj`, `nome`) VALUES
@@ -60,7 +60,7 @@ INSERT INTO `empresas` (`id_empresa`, `cnpj`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `enderecos`
+-- Estrutura da tabela `enderecos`
 --
 
 CREATE TABLE `enderecos` (
@@ -76,7 +76,7 @@ CREATE TABLE `enderecos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `enderecos`
+-- Extraindo dados da tabela `enderecos`
 --
 
 INSERT INTO `enderecos` (`id_end_passageiro`, `id_passageiro_id`, `cep`, `rua`, `numero`, `bairro`, `estado`, `cidade`, `complemento`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `enderecos` (`id_end_passageiro`, `id_passageiro_id`, `cep`, `rua`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `motoristas`
+-- Estrutura da tabela `motoristas`
 --
 
 CREATE TABLE `motoristas` (
@@ -97,7 +97,7 @@ CREATE TABLE `motoristas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `motoristas`
+-- Extraindo dados da tabela `motoristas`
 --
 
 INSERT INTO `motoristas` (`id_motorista`, `emp_idempresa`, `user_iduser`, `cnh`, `ativo`) VALUES
@@ -108,7 +108,7 @@ INSERT INTO `motoristas` (`id_motorista`, `emp_idempresa`, `user_iduser`, `cnh`,
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `passageiros`
+-- Estrutura da tabela `passageiros`
 --
 
 CREATE TABLE `passageiros` (
@@ -121,7 +121,7 @@ CREATE TABLE `passageiros` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `passageiros`
+-- Extraindo dados da tabela `passageiros`
 --
 
 INSERT INTO `passageiros` (`id_passageiro`, `emp_cod_empresa`, `id_usuario_id`, `matricula`, `curso`, `turma`) VALUES
@@ -130,7 +130,7 @@ INSERT INTO `passageiros` (`id_passageiro`, `emp_cod_empresa`, `id_usuario_id`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo_usuarios`
+-- Estrutura da tabela `tipo_usuarios`
 --
 
 CREATE TABLE `tipo_usuarios` (
@@ -139,7 +139,7 @@ CREATE TABLE `tipo_usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `tipo_usuarios`
+-- Extraindo dados da tabela `tipo_usuarios`
 --
 
 INSERT INTO `tipo_usuarios` (`tip_user`, `descricao`) VALUES
@@ -149,7 +149,7 @@ INSERT INTO `tipo_usuarios` (`tip_user`, `descricao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -167,7 +167,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `tipuser_tip_user`, `cpf`, `rg`, `email`, `nome`, `sobrenome`, `sexo`, `telefone`, `senha`, `aprovado`) VALUES
@@ -179,7 +179,7 @@ INSERT INTO `usuarios` (`id_usuario`, `tipuser_tip_user`, `cpf`, `rg`, `email`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `veiculos`
+-- Estrutura da tabela `veiculos`
 --
 
 CREATE TABLE `veiculos` (
@@ -194,27 +194,26 @@ CREATE TABLE `veiculos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Índices de tabelas apagadas
+-- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `corridas`
+-- Índices para tabela `corridas`
 --
 ALTER TABLE `corridas`
   ADD PRIMARY KEY (`id_corrida`),
-  ADD KEY `passageiro_id_passageiro` (`passageiro_id_passageiro`),
   ADD KEY `veiculo_id_veiculo` (`veiculo_id_veiculo`),
   ADD KEY `motorista_id_motorista` (`motorista_id_motorista`);
 
 --
--- Índices de tabela `empresas`
+-- Índices para tabela `empresas`
 --
 ALTER TABLE `empresas`
   ADD PRIMARY KEY (`id_empresa`),
   ADD UNIQUE KEY `cnpj` (`cnpj`);
 
 --
--- Índices de tabela `enderecos`
+-- Índices para tabela `enderecos`
 --
 ALTER TABLE `enderecos`
   ADD PRIMARY KEY (`id_end_passageiro`),
@@ -222,7 +221,7 @@ ALTER TABLE `enderecos`
   ADD KEY `id_passageiro_id` (`id_passageiro_id`);
 
 --
--- Índices de tabela `motoristas`
+-- Índices para tabela `motoristas`
 --
 ALTER TABLE `motoristas`
   ADD PRIMARY KEY (`id_motorista`),
@@ -231,7 +230,7 @@ ALTER TABLE `motoristas`
   ADD KEY `user_iduser` (`user_iduser`);
 
 --
--- Índices de tabela `passageiros`
+-- Índices para tabela `passageiros`
 --
 ALTER TABLE `passageiros`
   ADD PRIMARY KEY (`id_passageiro`),
@@ -240,13 +239,13 @@ ALTER TABLE `passageiros`
   ADD KEY `id_usuario_id` (`id_usuario_id`);
 
 --
--- Índices de tabela `tipo_usuarios`
+-- Índices para tabela `tipo_usuarios`
 --
 ALTER TABLE `tipo_usuarios`
   ADD PRIMARY KEY (`tip_user`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
@@ -256,7 +255,7 @@ ALTER TABLE `usuarios`
   ADD KEY `tipuser_tip_user` (`tipuser_tip_user`);
 
 --
--- Índices de tabela `veiculos`
+-- Índices para tabela `veiculos`
 --
 ALTER TABLE `veiculos`
   ADD PRIMARY KEY (`id_veiculo`),
@@ -265,7 +264,7 @@ ALTER TABLE `veiculos`
   ADD KEY `cod_empresa` (`cod_empresa`);
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -311,45 +310,44 @@ ALTER TABLE `veiculos`
   MODIFY `id_veiculo` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para dumps de tabelas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `corridas`
+-- Limitadores para a tabela `corridas`
 --
 ALTER TABLE `corridas`
-  ADD CONSTRAINT `corridas_ibfk_1` FOREIGN KEY (`passageiro_id_passageiro`) REFERENCES `passageiros` (`id_passageiro`),
-  ADD CONSTRAINT `corridas_ibfk_2` FOREIGN KEY (`veiculo_id_veiculo`) REFERENCES `veiculos` (`id_veiculo`),
-  ADD CONSTRAINT `corridas_ibfk_3` FOREIGN KEY (`motorista_id_motorista`) REFERENCES `motoristas` (`id_motorista`);
+  ADD CONSTRAINT `corridas_ibfk_1` FOREIGN KEY (`veiculo_id_veiculo`) REFERENCES `veiculos` (`id_veiculo`),
+  ADD CONSTRAINT `corridas_ibfk_2` FOREIGN KEY (`motorista_id_motorista`) REFERENCES `motoristas` (`id_motorista`);
 
 --
--- Restrições para tabelas `enderecos`
+-- Limitadores para a tabela `enderecos`
 --
 ALTER TABLE `enderecos`
   ADD CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_passageiro_id`) REFERENCES `passageiros` (`id_passageiro`);
 
 --
--- Restrições para tabelas `motoristas`
+-- Limitadores para a tabela `motoristas`
 --
 ALTER TABLE `motoristas`
   ADD CONSTRAINT `motoristas_ibfk_1` FOREIGN KEY (`emp_idempresa`) REFERENCES `empresas` (`id_empresa`),
   ADD CONSTRAINT `motoristas_ibfk_2` FOREIGN KEY (`user_iduser`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Restrições para tabelas `passageiros`
+-- Limitadores para a tabela `passageiros`
 --
 ALTER TABLE `passageiros`
   ADD CONSTRAINT `passageiros_ibfk_1` FOREIGN KEY (`emp_cod_empresa`) REFERENCES `empresas` (`id_empresa`),
   ADD CONSTRAINT `passageiros_ibfk_2` FOREIGN KEY (`id_usuario_id`) REFERENCES `usuarios` (`id_usuario`);
 
 --
--- Restrições para tabelas `usuarios`
+-- Limitadores para a tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`tipuser_tip_user`) REFERENCES `tipo_usuarios` (`tip_user`);
 
 --
--- Restrições para tabelas `veiculos`
+-- Limitadores para a tabela `veiculos`
 --
 ALTER TABLE `veiculos`
   ADD CONSTRAINT `veiculos_ibfk_1` FOREIGN KEY (`cnpj`) REFERENCES `empresas` (`id_empresa`),
