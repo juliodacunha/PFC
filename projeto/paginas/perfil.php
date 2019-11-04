@@ -164,7 +164,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
                 </div>
               </div>  
               </div>
-              <button onclick="editarperfil()" type="button" class="btn btn-dark">Mostrar/esconder opções do perfil</button>
+              <button onclick="editarperfil()" type="button" class="btn btn-dark" id="bbbb">Mostrar/esconder opções do perfil</button>
               <div id="editarperfil" style="display:none">
               <div class="row">
               <?php
@@ -178,8 +178,8 @@ if (array_key_exists("cnh", $arrayMotorista)) {
               </div>
               <?php endif  ?>
                 <form action="../funcoes/Perfil.php" method="POST">
-                  <div class="form-group">
-                  <table class="table table-striped table-responsive-md btn-table">
+                  <div class="crud">
+                  <table class="crud">
                   <tr>
                     <td>Nome</td>
                     <td><input type="text" class="form-control" value="<?php echo $row['nome']; ?>" placeholder="Nome" name="novonome" required maxlength="15"></td>
@@ -215,6 +215,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
                     <td>Curso</td>
                     <td><input type="text" class="form-control" value="<?php echo $row['curso']; ?>" placeholder="Curso" name="novocurso" minlength="3" maxlength="15" required></tr>
                   </tr>
+          
                   <tr>
                     <td>Turma</td>
                     <td><input type="text" class="form-control" value="<?php echo $row['turma']; ?>" placeholder="Turma" name="novoturma" minlength="3" maxlength="10" required></tr>

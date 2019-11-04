@@ -4,7 +4,7 @@ if(!isset($_SESSION['id'])){
     session_start();
 }
 
-$link = mysqli_connect("localhost", "root", "", "pfc");
+$link = mysqli_connect("localhost", "aluno", "aluno", "pfc");
 if($link === false){
     die("ERROR: Não pôde conectar. " . mysqli_connect_error());
 }
@@ -23,12 +23,12 @@ if(isset($_POST['submit'])){
     $data = $dia.'/'.$mes;
    
     //Insercao de dados
-    $sqlCorrida= "INSERT INTO corridas (id_corrida, usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES (1, '$id_usuario', last_insert_id(), last_insert_id(), '$data', '$ida', '$volta') ";
-    mysqli_query($link, $sqlCorrida);
+    $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', 92, 1, '$data', '$ida', '$volta') ";
+
 
 
     if(mysqli_query($link, $sqlCorrida)){
-        echo "Registrado";
+        echo '<div class="alert alert-light" role="alert"> Informações registradas com sucesso! </div>';
     }else{
         echo "Error: " . $sqlCorrida . "<br>" .
         mysqli_error($link);
