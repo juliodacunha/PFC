@@ -2,6 +2,7 @@
 
 include('../funcoes/Verifica_login.php');
 require("cabecalho.php");
+//require("../funcoes/Lista_motoristas.php");
 $id_usuario = $_SESSION['id'];
 if(isset($_SESSION['id'])){
   $id_usuario = $_SESSION['id'];
@@ -45,8 +46,10 @@ if (array_key_exists("cnh", $arrayMotorista)) {
 }
 
 
-$consulta = $conexao->query("SELECT nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro from usuarios, passageiros, enderecos where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die ($conexao->error);
-
+$consulta = $conexao->query("SELECT 
+id_usuario, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
+from usuarios, passageiros, enderecos 
+where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die ($conexao->error);
 
 ?>
 <html lang="en">
@@ -65,10 +68,13 @@ $consulta = $conexao->query("SELECT nome, sobrenome, telefone, email, sexo, bair
       <th scope="col">Rua</th>
       <th scope="col">Número</th>
       <th scope="col">Complemento</th>
-      <th scope="col"></th>
-
+      <th scope="col">Motorista</th>
+      <th scope="col">Alterar motorista</th>
+      <th scope="col">Alterar</th>
+      <th scope="col">Excluir</th>
     </tr>
   </thead>
+
    <?php while($dado = $consulta->fetch_array()){ ?>
   <tbody>
     <td><?php echo $dado["nome"]; ?> </td>  
@@ -80,8 +86,58 @@ $consulta = $conexao->query("SELECT nome, sobrenome, telefone, email, sexo, bair
     <td><?php echo $dado["rua"]; ?> </td>  
     <td><?php echo $dado["numero"]; ?> </td>  
     <td><?php echo $dado["complemento"]; ?> </td>  
+    <td><?php 
+    $idmot = $dado["id_motorista_id"];
+    $descobrir_nome = $conexao->query("SELECT nome, sobrenome FROM usuarios, motoristas WHERE id_usuario = user_iduser and id_motorista = '$idmot'");
+    while($info = $descobrir_nome->fetch_array()){
+      $nomemotorista = $info['nome'];
+    }
+    if(isset($nomemotorista)){
+      echo $nomemotorista;
+    }else{
+      echo "Não registrado";
+    }
+    ?>
+    </td>
+
+    <form method="GET">
+      <td>
+        <select name="novomotorista">
+        <option value="0">Não definido</option>
+          <?php
+          //puxar dado dos motoristas
+          $motorista = $conexao->query("select nome, sobrenome, cnh, id_motorista 
+                                      from usuarios, motoristas 
+                                      where id_usuario = user_iduser and emp_idempresa = 1");
+          while($informacao = $motorista->fetch_array()){ ?>
+          <option value="<?php echo $informacao['id_motorista']; ?>"><?php echo $informacao['nome']; ?></option> 
+          <?php } ?>           
+        </select> 
+      </td>  
+      <input type="hidden" value="<?php echo $dado['id_usuario']; ?>" name="user_id" />
+      <td> <button type="submit" class="btn btn-primary btn-sm" name="alterar">Alterar</button></td>
+    </form>
+
     <td> <a href="../funcoes/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></td>
- 
   </tbody>
   <?php }?>
 </table>
+
+<?php
+if(isset($_GET['alterar'])){
+  $novo_motorista = $_GET['novomotorista'];
+  $iduser = $_GET['user_id'];
+
+  $sql = "UPDATE usuarios, passageiros 
+  SET id_motorista_id = $novo_motorista
+  WHERE id_usuario='$iduser' and id_usuario_id = '$iduser'";
+
+  if (mysqli_query($conexao, $sql)) {
+    $url="passageiro_pelomot.php";
+    echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
+  } else {
+    echo "Erro ao atualizar: " . mysqli_error($conexao);
+  }
+}
+?>
