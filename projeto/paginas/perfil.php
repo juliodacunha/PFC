@@ -2,7 +2,6 @@
 if(!isset($_SESSION)){
   session_start();
 }
-require("head.php");
 require("cabecalho.php");
 if(!$_SESSION['email']){
   header('Location: ../index.php');

@@ -53,7 +53,7 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
 
 ?>
 <html lang="en">
-<head>
+<head></head>
 <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Visualização dos dados de todos os passageiros</h3>
 
 <table class="table">
@@ -110,7 +110,7 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
                                       from usuarios, motoristas 
                                       where id_usuario = user_iduser and emp_idempresa = 1");
           while($informacao = $motorista->fetch_array()){ ?>
-          <option value="<?php echo $informacao['id_motorista']; ?>"><?php echo $informacao['nome']; ?></option> 
+          <option value="<?php echo $informacao['id_motorista']; ?>"><?php echo $informacao['nome']." ".$informacao['sobrenome'];  ?></option> 
           <?php } ?>           
         </select> 
       </td>  
@@ -118,7 +118,7 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
       <td> <button type="submit" class="btn btn-primary btn-sm" name="alterar">Alterar</button></td>
     </form>
 
-    <td> <a href="../funcoes/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></td>
+    <td> <button type="submit" class="btn btn-primary btn-sm"><a href="../funcoes/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></button></td>
   </tbody>
   <?php }?>
 </table>
@@ -126,18 +126,32 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
 <?php
 if(isset($_GET['alterar'])){
   $novo_motorista = $_GET['novomotorista'];
-  $iduser = $_GET['user_id'];
+  if($novo_motorista == 0){
+    $iduser = $_GET['user_id'];
 
-  $sql = "UPDATE usuarios, passageiros 
-  SET id_motorista_id = $novo_motorista
-  WHERE id_usuario='$iduser' and id_usuario_id = '$iduser'";
+    $sql = "UPDATE usuarios, passageiros 
+    SET id_motorista_id = NULL
+    WHERE id_usuario='$iduser' and id_usuario_id = '$iduser'";
+    if (mysqli_query($conexao, $sql)) {
+      $url="passageiro_pelomot.php";
+      echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+      echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
+    }
+  }else{
+    $novo_motorista = $_GET['novomotorista'];
+    $iduser = $_GET['user_id'];
 
-  if (mysqli_query($conexao, $sql)) {
-    $url="passageiro_pelomot.php";
-    echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
-    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
-  } else {
-    echo "Erro ao atualizar: " . mysqli_error($conexao);
+    $sql = "UPDATE usuarios, passageiros 
+    SET id_motorista_id = $novo_motorista
+    WHERE id_usuario='$iduser' and id_usuario_id = '$iduser'";
+
+    if (mysqli_query($conexao, $sql)) {
+      $url="passageiro_pelomot.php";
+      echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+      echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
+    } else {
+      echo "Erro ao atualizar: " . mysqli_error($conexao);
+    }
   }
 }
 ?>

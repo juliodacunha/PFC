@@ -8,13 +8,14 @@ if(!isset($_SESSION)){
 if(isset($_SESSION['id'])){
 $id_usuario = $_SESSION['id'];
 //Código abaixo para verificar se o usuário é um motorista
-$query = "select senha, cnh from usuarios, motoristas where id_usuario = '$id_usuario'and id_usuario = user_iduser"; 
+$query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
 $result = mysqli_query($conexao, $query);
 $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
 $rows[] = $linha;
-$cnh = $rows[0]['cnh'];
+$tipo_usuario = $rows[0]['tipuser_tip_user'];
+
 }
 
 
@@ -32,24 +33,15 @@ $cnh = $rows[0]['cnh'];
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <!--<li class="nav-item active">
-                    <a class="nav-link" href="../index.php" >Página Inicial <span class="sr-only">Página inicial</span></a>
-                </li>
-                <li class="nav-item">
-</li>-->
-<!--<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Empresas
-    </a>
-     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#" >Suas Atividades</a>
-        <a class="dropdown-item" href="#">Atividade Financeira</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Empresas cadastratadas</a>
-    </div> 
-   </li> -->
+                
 <?php
-if(!isset($cnh)){
+if(!isset($tipo_usuario)){
+ echo' <li class="nav-item">
+ <a class="nav-link active" href="perfil.php">Perfil</a>
+</li>';
+}
+if(isset($tipo_usuario)){
+if($tipo_usuario == 1){
     echo '
 <li class="nav-item">
     <a class="nav-link active" href="perfil.php">Perfil</a>
@@ -63,24 +55,36 @@ if(!isset($cnh)){
 
 ';
 }
-if(isset($cnh)){
+
+if($tipo_usuario == 2){
     echo '
 <li class="nav-item">
 <a class="nav-link active" href="perfil.php">Perfil</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link " href="passageiro_pelomot.php">Todos passageiros</a>
+    <a class="nav-link active" href="passageiro_pelomot.php">Todos passageiros</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link " href="van_passageiro.php">Seus passageiros</a>
+    <a class="nav-link active" href="van_passageiro.php">Seus passageiros</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link " href="aprovar_motoristas.php">Aprovar motoristas</a>
+    <a class="nav-link active" href="presencas.php">Presenças</a>
 </li>
-<li class="nav-item">
-    <a class="nav-link " href="aprovar_passageiros.php">Aprovar passageiros</a>
+<li class="nav-item active">
+<div class="dropdown show">
+  <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Gerenciar contas
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="aprovar_motoristas.php">Aprovar motoristas</a>
+    <a class="dropdown-item" href="aprovar_passageiros.php">Aprovar passageiros</a>
+  </div>
+</div>
 </li>
+
     ';
+}
 }
 
 ?>
