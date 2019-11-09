@@ -55,7 +55,7 @@ function MostreCalendario( $mes  )
 
     $diasemana = jddayofweek( cal_to_jd(CAL_GREGORIAN, $mes,"01",date('Y')) , 0 );	// função que descobre o dia da semana
 
-    echo "<table style='margin: 3%; align-items: center; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;' >";
+    echo "<table style='margin: auto; align-items: center; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;' >";
     echo "<tr>";
     echo "<td colspan = 7><h3>".$nome_mes."</h3></td>";
     echo "</tr>";

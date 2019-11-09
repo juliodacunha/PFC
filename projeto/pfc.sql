@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 05/11/2019 às 16:46
+-- Tempo de geração: 08/11/2019 às 19:07
 -- Versão do servidor: 10.4.6-MariaDB
 -- Versão do PHP: 7.3.9
 
@@ -30,29 +30,30 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `corridas` (
   `id_corrida` int(10) NOT NULL,
-  `usuario_id_usuario` int(5) DEFAULT NULL,
   `veiculo_id_veiculo` int(4) DEFAULT NULL,
   `motorista_id_motorista` int(3) DEFAULT NULL,
   `data_corrida` varchar(20) NOT NULL,
   `horario_ida` varchar(20) NOT NULL,
-  `horario_volta` varchar(20) NOT NULL
+  `horario_volta` varchar(20) NOT NULL,
+  `usuario_id_usuario` int(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Despejando dados para a tabela `corridas`
 --
 
-INSERT INTO `corridas` (`id_corrida`, `usuario_id_usuario`, `veiculo_id_veiculo`, `motorista_id_motorista`, `data_corrida`, `horario_ida`, `horario_volta`) VALUES
-(2, 288, 1, 92, '1/02', 'Vai', 'Volta 17h'),
-(3, 288, 1, 92, '1/02', 'Vai', 'Volta 17h'),
-(4, 288, 1, 92, '1/02', 'Vai', 'Volta 17h'),
-(5, 288, 1, 92, '1/02', 'Vai', 'Volta 17h'),
-(6, 288, 1, 92, '1/02', 'Vai', 'Volta 17h'),
-(7, 288, 1, 92, '17/02', 'Vai', 'Volta 12h'),
-(8, 288, 1, 92, '17/02', 'Vai', 'Volta 12h'),
-(9, 288, 1, 92, '17/02', 'Vai', 'Volta 12h'),
-(10, 288, 1, 92, '8/01', 'Vai', 'Volta 12h'),
-(11, 288, 1, 92, '8/01', 'Vai', 'Volta 12h');
+INSERT INTO `corridas` (`id_corrida`, `veiculo_id_veiculo`, `motorista_id_motorista`, `data_corrida`, `horario_ida`, `horario_volta`, `usuario_id_usuario`) VALUES
+(2, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
+(3, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
+(4, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
+(5, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
+(6, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
+(7, 1, 130, '17/02', 'Vai', 'Volta 12h', 296),
+(8, 1, 92, '17/02', 'Vai', 'Volta 12h', NULL),
+(9, 1, 92, '17/02', 'Vai', 'Volta 12h', NULL),
+(10, 1, 92, '8/01', 'Vai', 'Volta 12h', NULL),
+(11, 1, 92, '8/01', 'Vai', 'Volta 12h', NULL),
+(12, 1, 92, '9/11', 'Vai', 'Volta 12h', 296);
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,7 @@ CREATE TABLE `enderecos` (
 --
 
 INSERT INTO `enderecos` (`id_end_passageiro`, `id_passageiro_id`, `cep`, `rua`, `numero`, `bairro`, `estado`, `cidade`, `complemento`) VALUES
-(179, 114, 12312321, 'rua', 1, 'casa', 'sc', 'cjlle', 'cas');
+(181, 116, 13812371, 'rua', 2, 'jariva', 'sc', 'joinville', 'casa');
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,7 @@ CREATE TABLE `passageiros` (
 --
 
 INSERT INTO `passageiros` (`id_passageiro`, `emp_cod_empresa`, `id_usuario_id`, `matricula`, `curso`, `turma`, `id_motorista_id`) VALUES
-(114, 1, 288, 4555551231, 'informatica', '3info2', 130);
+(116, 1, 296, 2917238127, 'informatica', '3info2', 130);
 
 -- --------------------------------------------------------
 
@@ -189,11 +190,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `tipuser_tip_user`, `cpf`, `rg`, `email`, `nome`, `sobrenome`, `sexo`, `telefone`, `senha`, `aprovado`) VALUES
-(253, 1, 12938219381, 8912831, 'motora@gmail', 'luciano2', 'zanella', 'Masculino', 13892183912, 'd9b1d7db4cd6e70935368a1efb10e377', 1),
+(253, 2, 12938219381, 8912831, 'motora@gmail', 'luciano2', 'zanella', 'Masculino', 13892183912, 'd9b1d7db4cd6e70935368a1efb10e377', 1),
 (272, 1, 123123123, 123123, 'bruske@gmail', 'bruske', 'ober', 'Masculino', 1231231233, 'b59c67bf196a4758191e42f76670ceba', 1),
-(288, 1, 12312321321, 1231231, 'ae@gmail', 'ae', 'ae', 'Masculino', 28312783217, 'd9b1d7db4cd6e70935368a1efb10e377', 1),
-(289, 1, 16749216478, 7987698, 'a@a', 'a', 'a', 'Masculino', 7128937129, '202cb962ac59075b964b07152d234b70', 1),
-(293, 2, 12412512412, 1312321, 'j@j', 'motorista', 'motorista', 'Masculino', 1391203128, '202cb962ac59075b964b07152d234b70', 1);
+(289, 2, 16749216478, 7987698, 'a@a', 'a', 'a', 'Masculino', 7128937129, '202cb962ac59075b964b07152d234b70', 1),
+(293, 2, 12412512412, 1312321, 'j@j', 'motorista', 'motorista', 'Masculino', 1391203128, '202cb962ac59075b964b07152d234b70', 1),
+(296, 1, 73712893721, 7381273, 'bp@gmail', 'brenon', 'paul', 'Masculino', 73819237921, '202cb962ac59075b964b07152d234b70', 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +230,8 @@ INSERT INTO `veiculos` (`id_veiculo`, `cnpj`, `cod_empresa`, `placa`, `marca`, `
 ALTER TABLE `corridas`
   ADD PRIMARY KEY (`id_corrida`),
   ADD KEY `veiculo_id_veiculo` (`veiculo_id_veiculo`),
-  ADD KEY `motorista_id_motorista` (`motorista_id_motorista`);
+  ADD KEY `motorista_id_motorista` (`motorista_id_motorista`),
+  ADD KEY `corridas_ibfk_3` (`usuario_id_usuario`);
 
 --
 -- Índices de tabela `empresas`
@@ -298,7 +300,7 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `corridas`
 --
 ALTER TABLE `corridas`
-  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `empresas`
@@ -310,7 +312,7 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id_end_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
+  MODIFY `id_end_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
 
 --
 -- AUTO_INCREMENT de tabela `motoristas`
@@ -322,7 +324,7 @@ ALTER TABLE `motoristas`
 -- AUTO_INCREMENT de tabela `passageiros`
 --
 ALTER TABLE `passageiros`
-  MODIFY `id_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `id_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_usuarios`
@@ -334,7 +336,7 @@ ALTER TABLE `tipo_usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
+  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=298;
 
 --
 -- AUTO_INCREMENT de tabela `veiculos`
@@ -351,7 +353,8 @@ ALTER TABLE `veiculos`
 --
 ALTER TABLE `corridas`
   ADD CONSTRAINT `corridas_ibfk_1` FOREIGN KEY (`veiculo_id_veiculo`) REFERENCES `veiculos` (`id_veiculo`),
-  ADD CONSTRAINT `corridas_ibfk_2` FOREIGN KEY (`motorista_id_motorista`) REFERENCES `motoristas` (`id_motorista`);
+  ADD CONSTRAINT `corridas_ibfk_2` FOREIGN KEY (`motorista_id_motorista`) REFERENCES `motoristas` (`id_motorista`),
+  ADD CONSTRAINT `corridas_ibfk_3` FOREIGN KEY (`usuario_id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 
 --
 -- Restrições para tabelas `enderecos`

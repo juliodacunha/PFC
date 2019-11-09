@@ -4,7 +4,6 @@ include("../funcoes/Conexao.php");
 
 
 $usu_codigo = intval($_GET['codigo']);
-//print_r ($usu_codigo);
 $consulta = $conexao->query("SELECT nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro 
 from usuarios, passageiros, enderecos 
 where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die ($conexao->error);
@@ -20,8 +19,14 @@ while($dado = $consulta->fetch_array()){
 }
 
 
+?>
+<p> Tem ceteza que deseja excluir? </p>
+<form method="post">
+<input type="submit" name="confirmar_exclusao">
+</form>
+<?php
 
-
+if(isset($_POST['confirmar_exclusao'])){
 $sql = "DELETE FROM enderecos WHERE id_passageiro_id = '$usu_codigo'";
         if (mysqli_query($conexao, $sql)) {
             $sql = "DELETE FROM passageiros WHERE id_passageiro = '$usu_codigo'";
@@ -37,7 +42,7 @@ $sql = "DELETE FROM enderecos WHERE id_passageiro_id = '$usu_codigo'";
             echo "Erro ao excluir: " . mysqli_error($conexao);
         }
 
-
+    }
 ?>
 <script>
 
