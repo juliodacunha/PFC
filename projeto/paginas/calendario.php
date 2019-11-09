@@ -37,7 +37,7 @@ if(isset($_GET['mes'])){
                 <label class='custom-control-label' for='radio1'>Vou de van</label>
             </div>
             <div class='custom-control custom-radio'>
-                <input type='radio' id='radio2' name='ida' class='custom-control-input' value='Não vai'>
+                <input type='radio' id='radio2' name='ida' class='custom-control-input' value='Nao vai'>
                 <label class='custom-control-label' for='radio2'>Não vou de van</label>
             </div>
         </div>
@@ -52,7 +52,7 @@ if(isset($_GET['mes'])){
                 <label class='custom-control-label' for='radio4'>Volto 17h</label>
             </div>
             <div class='custom-control custom-radio'>
-                <input type='radio' id='radio5' name='volta' class='custom-control-input' value='Não volto'>
+                <input type='radio' id='radio5' name='volta' class='custom-control-input' value='Nao volto'>
                 <label class='custom-control-label' for='radio5'>Não volto de van</label>
             </div>
         </div>

@@ -80,6 +80,9 @@ if(isset($cnh)){
 <li class="nav-item">
     <a class="nav-link " href="aprovar_passageiros.php">Aprovar passageiros</a>
 </li>
+<li class="nav-item">
+    <a class="nav-link " href="ver_passageiros.php">Calendário</a>
+</li>
     ';
 }
 

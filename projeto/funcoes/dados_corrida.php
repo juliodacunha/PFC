@@ -21,9 +21,16 @@ if(isset($_POST['submit'])){
     $dia = mysqli_real_escape_string($link, $_REQUEST['dia']);
     $mes = mysqli_real_escape_string($link, $_REQUEST['mes']);
     $data = $dia.'/'.$mes;
+    $query = "select id_motorista_id from motoristas, passageiros, usuarios where id_motorista = id_motorista_id and id_usuario = id_usuario_id and id_usuario_id = '$id_usuario'"; 
+    $result = mysqli_query($conexao, $query);
+    $linha = mysqli_num_rows($result);
+    $rows = [];
+    $linha = mysqli_fetch_assoc($result);
+    $rows[] = $linha;
+    $id_motora = $rows[0]['id_motorista_id'];
    
     //Insercao de dados
-    $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', 92, 1, '$data', '$ida', '$volta') ";
+    $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', '$id_motora', 1, '$data', '$ida', '$volta') ";
 
 
 
