@@ -1,5 +1,7 @@
 <?php
+if(!isset($_SESSION)){
 session_start();
+}
 
 $link = mysqli_connect("localhost", "root", "", "pfc");
 if($link === false){
@@ -21,19 +23,30 @@ if(isset($_POST['submit'])){
 
     //Insercao de dados
     $sqlMotorista = "INSERT INTO usuarios (tipuser_tip_user, cpf, rg, email, nome, sobrenome, sexo, telefone, senha) VALUES (2, '$cpf', '$rg', '$email', '$nome', '$sobrenome', '$sexo', '$telefone', '$senha')";
-    mysqli_query($link, $sqlMotorista);
 
     $sql4 = "INSERT INTO motoristas (emp_idempresa, user_iduser, cnh, ativo) VALUES ('1', last_insert_id(), '$cnh', '1')";
-    mysqli_query($link, $sql4);
 
-    if(mysqli_query($link, $sql4)){
-        echo "Registrado";
-    }elseif(mysqli_query($link, $sqlMotorista)){
-        echo "Registrado";
+    if(strlen($rg) >= 7 AND strlen($cpf) >= 11 AND strlen($cnh) >= 10){
+        if(mysqli_query($link, $sql4)){
+            if(mysqli_query($link, $sqlMotorista)){
+                echo "Registrado";
+            }
+        }
     }else{
-        //echo "Error: " . $sql4 . "<br>" .
-        //mysqli_error($link);
+        if(strlen($rg<=7)){
+            echo "Cadastro não realizado, erro no RG <BR>";
+        }
+        if(strlen($cpf<=11)){
+            echo "Cadastro não realizado, erro no CPF <BR>";
+        }
+        if(strlen($cnh<=10)){
+            echo "Cadastro não realizado, erro no CNH <BR>";
+        }
+        if(isset($sexo)){
+            echo "Cadastro não realizado, erro no sexo <BR>";
+        }
     }
+    
 
 }elseif(isset($_POST['registrar'])){
     //Tabela usuario (padrao)
@@ -60,26 +73,52 @@ if(isset($_POST['submit'])){
     $curso = mysqli_real_escape_string($link, trim($_REQUEST['curso']));
     $matricula = mysqli_real_escape_string($link, trim($_REQUEST['matricula']));
 
-    //Insercao de dados
-    $sql = "INSERT INTO usuarios (tipuser_tip_user, cpf, rg, email, nome, sobrenome, sexo, telefone, senha) 
-    VALUES (1, '$cpf', '$rg', '$email', '$nome', '$sobrenome', '$sexo', '$telefone', '$senha')";
-    mysqli_query($link, $sql);
-    //echo $sql."<br>";
+    if(strlen($rg) >= 7 AND strlen($cpf) >= 11 AND strlen($cnh) >= 10){
+        if(mysqli_query($link, $sql4)){
+            if(mysqli_query($link, $sqlMotorista)){
+                echo "Registrado";
+            }
+        }
+    }else{
 
-    if(isset($rg)){
+        //Insercao de dados
+        $sql = "INSERT INTO usuarios (tipuser_tip_user, cpf, rg, email, nome, sobrenome, sexo, telefone, senha) 
+        VALUES (1, '$cpf', '$rg', '$email', '$nome', '$sobrenome', '$sexo', '$telefone', '$senha')";
         $sql2 = "INSERT INTO passageiros (emp_cod_empresa, id_usuario_id, turma, curso, matricula) 
         VALUES ('1', last_insert_id(), '$turma', '$curso', '$matricula')";
-        mysqli_query($link, $sql2);
-        //echo $sql2."<br>";
-    }
-    if(isset($matricula)){
         $sql3 = "INSERT INTO enderecos (id_passageiro_id, cep, rua, numero, complemento, bairro, cidade, estado) 
         VALUES (last_insert_id(), '$cep', '$rua', '$numero', '$complemento', '$bairro', '$cidade', '$estado')";
-        mysqli_query($link, $sql3);
-       // echo $sql3."<br>";
-    }
+        mysqli_query($link, $sql);
+        //echo $sql."<br>";
 
-}else{}
+        if(strlen($rg) >= 7 AND strlen($cpf) >= 11 AND strlen($cnh) >= 10 AND strlen($cep) >= 8 AND strlen($estado) >= 2){
+            if(mysqli_query($link, $sql)){
+                if(mysqli_query($link, $sql2)){
+                    if(mysqli_query($link, $sql3)){
+                        echo "Registrado";
+                    }
+                }
+            }
+        
+        }else{
+            if(strlen($rg<=7)){
+                echo "Cadastro não realizado, erro no RG <BR>";
+            }
+            if(strlen($cpf<=11)){
+                echo "Cadastro não realizado, erro no CPF <BR>";
+            }
+            if(isset($sexo)){
+                echo "Cadastro não realizado, erro no sexo <BR>";
+            }
+            if(strlen($cep<=1)){
+                echo "Cadastro não realizado, erro no CEP <BR>";
+            }
+            if(strlen($estado<=11)){
+                echo "Cadastro não realizado, erro no estado <BR>";
+            }
+        }  
+    }
+}
 
 
 

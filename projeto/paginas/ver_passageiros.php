@@ -1,5 +1,4 @@
 <?php
-require("head.php");
 require("cabecalho.php");
 require("../funcoes/calendario.php");
 

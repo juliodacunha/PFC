@@ -1,5 +1,4 @@
 <?php
-require("head.php");
 require("cabecalho.php");
 require("../funcoes/cadastro_usuario.php");
 ?>
@@ -30,62 +29,62 @@ require("../funcoes/cadastro_usuario.php");
                     <input type="hidden" id="emp_cod_empresa" name="emp_cod_empresa" value="1">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Primeiro nome *" id="nome" name="nome" required maxlength="15">
+                            <input type="text" class="form-control" placeholder="Primeiro nome *" id="nome" name="nome" value="<?php if(isset ($nome)){ echo $nome;} ?>" required maxlength="15">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Ultimo nome *" id="sobrenome" name="sobrenome" required maxlength="15">
+                            <input type="text" class="form-control" placeholder="Ultimo nome *" id="sobrenome" name="sobrenome" value="<?php if(isset ($sobrenome)){ echo $sobrenome;} ?>" required maxlength="15">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Senha *" id="senha" name="senha" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="RG *" id="rg" name="rg" required maxlength="7"/>
+                            <input type="text" class="form-control"  placeholder="RG *" id="rg" name="rg" value="<?php if(isset ($rg)){ echo $rg;} ?>" required maxlength="7"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="CPF *" id="cpf" name="cpf" maxlength="11" required />
+                            <input type="text" class="form-control"  placeholder="CPF *" id="cpf" name="cpf" value="<?php if(isset ($cpf)){ echo $cpf;} ?>" maxlength="11" required />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email *" id="email" name="email" required/>
+                            <input type="email" class="form-control" placeholder="Email *" id="email" name="email" value="<?php if(isset ($email)){ echo $email;} ?>" required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="CEP *" id="cep" name="cep" required maxlength="8" />
+                            <input type="text" class="form-control" placeholder="CEP *" id="cep" name="cep" value="<?php if(isset ($cep)){ echo $cep;} ?>" required maxlength="8" />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Rua *" id="rua" name="rua" required />
+                            <input type="text" class="form-control" placeholder="Rua *" id="rua" name="rua" value="<?php if(isset ($rua)){ echo $rua;} ?>" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Número da residência *" id="numero" name="numero" required maxlength="5"/>
+                            <input type="text" class="form-control" placeholder="Número da residência *" id="numero" name="numero" value="<?php if(isset ($numero)){ echo $numero;} ?>" required maxlength="5"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="Complemento *" id="complemento" name="complemento" required maxlength="15" />
+                            <input type="text" class="form-control"  placeholder="Complemento *" id="complemento" name="complemento" value="<?php if(isset ($complemento)){ echo $complemento;} ?>" required maxlength="15" />
                         </div>
 
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="Bairro *" id="bairro" name="bairro" required maxlength="15"/>
+                            <input type="text" class="form-control"  placeholder="Bairro *" id="bairro" name="bairro" value="<?php if(isset ($bairro)){ echo $bairro;} ?>" required maxlength="15"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Cidade *" id="cidade" name="cidade" required maxlength="15"/>
+                            <input type="text" class="form-control" placeholder="Cidade *" id="cidade" name="cidade" value="<?php if(isset ($cidade)){ echo $cidade;} ?>" required maxlength="15"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Estado *" id="estado" name="estado" required maxlength="2"/>
+                            <input type="text" class="form-control" placeholder="Estado *" id="estado" name="estado" value="<?php if(isset ($estado)){ echo $estado;} ?>" required maxlength="2"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" placeholder="Telefone *" name="telefone" required />
+                            <input type="text" minlength="10" maxlength="11" name="telefone" class="form-control" placeholder="Telefone *" value="<?php if(isset ($telefone)){ echo $telefone;} ?>" name="telefone" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" minlength="3" maxlength="10" name="turma" class="form-control" placeholder="Turma *" id="turma" name="turma" required />
+                            <input type="text" minlength="3" maxlength="10" name="turma" class="form-control" placeholder="Turma *" id="turma" name="turma" value="<?php if(isset ($turma)){ echo $turma;} ?>" required />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="text" minlength="4" maxlength="15" name="curso" class="form-control" placeholder="Curso *" id="curso" name="curso" required />
+                            <input type="text" minlength="4" maxlength="15" name="curso" class="form-control" placeholder="Curso *" id="curso" name="curso" value="<?php if(isset ($curso)){ echo $curso;} ?>" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" minlength="10" maxlength="10" name="matricula" class="form-control" placeholder="Matricula *" id="matricula" name="matricula" required />
+                            <input type="text" minlength="10" maxlength="10" name="matricula" class="form-control" placeholder="Matricula *" id="matricula" value="<?php if(isset ($matricula)){ echo $matricula;} ?>" name="matricula" required />
                         </div>
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input"  name="sexo" id="masculino" value="Masculino" checked>
@@ -114,30 +113,30 @@ require("../funcoes/cadastro_usuario.php");
                         <input type="hidden" id="emp_idempresa" name="emp_idempresa" value="1">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Primeiro nome *" value="" name="nome" id="nome"/>
+                                <input type="text" class="form-control" placeholder="Primeiro nome *" value="<?php if(isset ($nome)){ echo $nome;} ?>" name="nome" id="nome"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Ultimo nome *" value="" name="sobrenome" id="sobrenome"/>
+                                <input type="text" class="form-control" placeholder="Ultimo nome *" value="<?php if(isset ($sobrenome)){ echo $sobrenome;} ?>" name="sobrenome" id="sobrenome"/>
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Senha *" value="" name="senha" id="senha"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control"  placeholder="RG *" value="" name="rg" id="rg" maxlength="7"/>
+                                <input type="text" class="form-control"  placeholder="RG *" value="<?php if(isset ($rg)){ echo $rg;} ?>" name="rg" id="rg" maxlength="7"/>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control"  placeholder="CPF *" value="" name="cpf" id="cpf" maxlength="11"/>
+                                <input type="text" class="form-control"  placeholder="CPF *" value="<?php if(isset ($cpf)){ echo $cpf;} ?>" name="cpf" id="cpf" maxlength="11"/>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email *" value="" name="email" id="email"/>
+                                <input type="email" class="form-control" placeholder="Email *" value="<?php if(isset ($email)){ echo $email;} ?>" name="email" id="email"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Telefone *" value="" name="telefone" id="telefone" />
+                                <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Telefone *" value="<?php if(isset ($telefone)){ echo $telefone;} ?>" name="telefone" id="telefone" />
                             </div>
                             <div class="form-group">
-                                <input type="text" minlength="10" maxlength="10" name="cnh" id="cnh" class="form-control" placeholder="CNH *" value="" />
+                                <input type="text" minlength="10" maxlength="10" name="cnh" id="cnh" class="form-control" placeholder="CNH *" value="<?php if(isset ($cnh)){ echo $cnh;} ?>" />
                             </div>
                         </div>
                         <div class="col-md-4">
