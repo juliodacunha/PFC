@@ -7,6 +7,12 @@ if(isset($_SESSION['email'])){
     header('Location: perfil.php');
     exit();
 }
+
+$string = "a";
+if(1 === preg_match('~[0-9]~', $string)){
+    echo "contem numero";
+}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
