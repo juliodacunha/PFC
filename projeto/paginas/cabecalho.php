@@ -67,10 +67,6 @@ if($tipo_usuario == 2){
 <li class="nav-item">
     <a class="nav-link active" href="van_passageiro.php">Seus passageiros</a>
 </li>
-<li class="nav-item">
-    <a class="nav-link active" href="ver_passageiros.php">Presenças</a>
-</li>
-<li class="nav-item active">
 <div class="dropdown show">
   <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Gerenciar contas
@@ -79,6 +75,18 @@ if($tipo_usuario == 2){
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <a class="dropdown-item" href="aprovar_motoristas.php">Aprovar motoristas</a>
     <a class="dropdown-item" href="aprovar_passageiros.php">Aprovar passageiros</a>
+  </div>
+</div>
+</li>
+<li class="nav-item active">
+<div class="dropdown show">
+  <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Calendário de presença 
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="ver_passageiros.php">Dos seus passageiro</a>
+    <a class="dropdown-item" href="ver_todospassageiros.php">De todos os passageiros</a>
   </div>
 </div>
 </li>

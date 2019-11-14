@@ -3,7 +3,7 @@ if(!isset($_SESSION)){
 session_start();
 }
 
-$link = mysqli_connect("localhost", "root", "", "pfc");
+$link = mysqli_connect("localhost", "aluno", "aluno", "pfc");
 if($link === false){
     die("ERROR: Não pôde conectar. " . mysqli_connect_error());
 }
