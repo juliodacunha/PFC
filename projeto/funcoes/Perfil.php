@@ -6,23 +6,40 @@ require('Conexao.php');
 $id_usuario = $_SESSION['id'];
 
 //Código abaixo para verificar se o usuário é um motorista
-$query = "select senha, cnh from usuarios, motoristas where id_usuario = '$id_usuario'and id_usuario = user_iduser"; 
+$query = "select imagem, senha, cnh from usuarios, motoristas where id_usuario = '$id_usuario'and id_usuario = user_iduser"; 
 $result = mysqli_query($conexao, $query);
 $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
 $rows[] = $linha;
 $cnh = $rows[0]['cnh'];
+$imagem = $rows[0]['imagem'];
 //echo $cnh;
 
 //linha abaixo para comparar senha antiga com a nova
 $senha_antiga = $rows[0]['senha'];
 
+if(isset($_POST['alterarfoto'])){
+        // Get image name
+        $image = $_FILES['novafoto']['name'];
+        // image file directory
+        $target = "../img/usuarios/";
+        $temp = explode(".", $_FILES["novafoto"]["name"]);
+        $novafoto = round(microtime(true)) . '.' . end($temp);
+        $sql = "UPDATE usuarios SET imagem = '$novafoto' WHERE id_usuario = '$id_usuario'";
+        if(mysqli_query($conexao, $sql)){ 
+            move_uploaded_file($_FILES['novafoto']['tmp_name'], $target.$novafoto);
+            echo "<div class='alert alert-success' role='alert'>
+            Foto alterada.
+          </div>";
+            header('refresh: 1; url=../paginas/perfil.php');
+        }
+}
+
 if(isset($_POST['editar'])){
     if(isset($cnh)){
         $nome = mysqli_real_escape_string($conexao, $_REQUEST['novonome']);
         $sobrenome = mysqli_real_escape_string($conexao, $_REQUEST['novosobrenome']);
-
         $senha = md5(mysqli_real_escape_string($conexao, $_REQUEST['novosenha'])); 
         $rg = mysqli_real_escape_string($conexao, $_REQUEST['novorg']);
         $cpf = mysqli_real_escape_string($conexao, $_REQUEST['novocpf']);
@@ -64,7 +81,12 @@ if(isset($_POST['editar'])){
         if(isset($sql2)){
             if(mysqli_query($conexao, $sql2)){
                 echo "Senha alterada!";
-          }
+            }
+        }
+        if(isset($sql3)){
+            if(mysqli_query($conexao, $sql3)){
+                echo "Foto alterada!";
+            }
         }
         //echo $sql;
         header('refresh:1; url=../index.php');

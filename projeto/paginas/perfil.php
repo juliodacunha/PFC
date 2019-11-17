@@ -11,13 +11,13 @@ $id_usuario = $_SESSION['id'];
 
 //Abaixo o código de busca no banco de dados sobre o formulário de perfil do passageiro
 $email = $_SESSION['email'];
-$result = $conexao->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, curso, turma, matricula, cep, rua, numero, bairro, cidade, estado, complemento
+$result = $conexao->query("SELECT imagem, nome, sobrenome, cpf, rg, telefone, email, senha, curso, turma, matricula, cep, rua, numero, bairro, cidade, estado, complemento
 from usuarios, passageiros, enderecos 
 where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_passageiro_id") or die($conexao->error);
 $arrayPassageiro = $result->fetch_assoc();
 
 //Abaixo perfil motorista
-$resultMotorista = $conexao->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, cnh
+$resultMotorista = $conexao->query("SELECT imagem, nome, sobrenome, cpf, rg, telefone, email, senha, cnh
 from usuarios, motoristas
 where email = '$email' and user_iduser = id_usuario") or die($conexao->error);
 $arrayMotorista = $resultMotorista->fetch_assoc();
@@ -69,8 +69,20 @@ if (array_key_exists("cnh", $arrayMotorista)) {
             <div id="perfil" style="none"> 
             <div class="panel-body">
               <div class="row">
-                 <div class="col-md-3 col-lg-3 " align="center"> <!--<img alt="User Pic" src="#" class="img-circle img-responsive"> --></div> 
-                
+                <div class="col-md-3 col-lg-3 " text-align="center"> 
+                  <img alt="User Pic" src="../img/usuarios/<?php echo $row['imagem']; ?>" class="img-thumbnail img-responsive"> 
+                  <form action="../funcoes/Perfil.php" method="POST" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="novafoto" name="novafoto" required>
+                        <label class="custom-file-label" for="novafoto"></label>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="submit" name="alterarfoto" class="btn btn-dark btn-sm">Alterar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div> 
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
@@ -176,7 +188,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
               ?>
               </div>
               <?php endif  ?>
-                <form action="../funcoes/Perfil.php" method="POST">
+                <form action="../funcoes/Perfil.php" method="POST" enctype="multipart/form-data">
                   <div class="crud">
                   <table class="crud">
                   <tr>

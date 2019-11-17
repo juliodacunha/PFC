@@ -88,14 +88,18 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
     <td><?php echo $dado["complemento"]; ?> </td>  
     <td><?php 
     $idmot = $dado["id_motorista_id"];
+    if(empty($idmot)){
+      
+    }
+      
     $descobrir_nome = $conexao->query("SELECT nome, sobrenome FROM usuarios, motoristas WHERE id_usuario = user_iduser and id_motorista = '$idmot'");
     while($info = $descobrir_nome->fetch_array()){
       $nomemotorista = $info['nome'];
     }
-    if(isset($nomemotorista)){
-      echo $nomemotorista;
+    if(empty($idmot)){
+      echo "";
     }else{
-      echo "Não registrado";
+      echo $nomemotorista;
     }
     ?>
     </td>
@@ -128,10 +132,11 @@ if(isset($_GET['alterar'])){
   $novo_motorista = $_GET['novomotorista'];
   if($novo_motorista == 0){
     $iduser = $_GET['user_id'];
+    $novo_motorista = $_GET['novomotorista'];
 
     $sql = "UPDATE usuarios, passageiros 
     SET id_motorista_id = NULL
-    WHERE id_usuario='$iduser' and id_usuario_id = '$iduser'";
+    WHERE id_usuario='$iduser' and id_usuario = id_usuario_id";
     if (mysqli_query($conexao, $sql)) {
       $url="passageiro_pelomot.php";
       echo "<script type='text/javascript'>document.location.href='{$url}';</script>";

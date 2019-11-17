@@ -4,7 +4,7 @@ if(!isset($_SESSION['id'])){
     session_start();
 }
 
-$link = mysqli_connect("localhost", "aluno", "aluno", "pfc");
+$link = mysqli_connect("localhost", "root", "", "pfc");
 if($link === false){
     die("ERROR: Não pôde conectar. " . mysqli_connect_error());
 }

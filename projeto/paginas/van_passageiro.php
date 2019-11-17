@@ -39,8 +39,8 @@ $sql = $conexao->query("SELECT nome, sobrenome, rua, numero, bairro, complemento
       <th></th>
     </tr>
   </thead>
+  <?php while($info = $sql->fetch_array()){ ?>
     <tbody>
-    <?php while($info = $sql->fetch_array()){ ?>
     <td><?php echo $info['nome']; ?></td>
     <td><?php echo $info['sobrenome']; ?></td>
     <td><?php echo $info['rua']; ?></td>
@@ -53,6 +53,6 @@ $sql = $conexao->query("SELECT nome, sobrenome, rua, numero, bairro, complemento
     <td><?php echo $info['email']; ?></td>
     <td><?php echo $info['cpf']; ?></td>
     <td><?php echo $info['rg']; ?></td>
-    <?php } ?>
     </tbody>
+    <?php } ?>
 </table>
