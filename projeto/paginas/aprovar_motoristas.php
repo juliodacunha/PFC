@@ -25,7 +25,8 @@ $aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, s
 <table class="table">
 <thead>
     <tr>
-      <th scope="col" >Nome</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Nome</th>
       <th scope="col">Sobrenome</th>
       <th scope="col">Email</th>
       <th scope="col">CPF</th>
@@ -42,6 +43,7 @@ $aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, s
   while($dado = $aprovar_motoristas->fetch_array()){ $i++ ?>
     <tbody>
     <form method="GET">
+    <td><?php if($dado['imagem'] != null){?><a href="../img/usuarios/<?php echo $dado['imagem']; ?>"><div style=""><img class="zoom" <?php if($dado['imagem'] != null){?> src="../img/usuarios/<?php echo $dado['imagem']; ?>"><?php }?></a><?php }else{ echo "";} ?></div></td>
     <td><?php echo $dado['nome']; ?></td>
     <td><?php echo $dado['sobrenome']; ?></td>
     <td><?php echo $dado['email']; ?></td>

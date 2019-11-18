@@ -25,7 +25,6 @@ $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
 $rows[] = $linha;
-print_r($rows);
 $id_end_passageiro = $rows[0]['id_end_passageiro'];
 $id_passageiro = $rows[0]['id_passageiro'];
 $id_usuario = $rows[0]['id_usuario'];

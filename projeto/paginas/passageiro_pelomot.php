@@ -47,7 +47,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
 
 
 $consulta = $conexao->query("SELECT 
-id_usuario, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
+id_usuario, imagem, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
 from usuarios, passageiros, enderecos 
 where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die ($conexao->error);
 
@@ -59,7 +59,8 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
 <table class="table">
 <thead>
     <tr>
-      <th scope="col" >Nome</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Nome</th>
       <th scope="col">Sobrenome</th>
       <th scope="col">Telefone</th>
       <th scope="col">Email</th>
@@ -77,6 +78,8 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
 
    <?php while($dado = $consulta->fetch_array()){ ?>
   <tbody>
+  
+    <td><?php if($dado['imagem'] != null){?><a href="../img/usuarios/<?php echo $dado['imagem']; ?>"><div style=""><img class="zoom" <?php if($dado['imagem'] != null){?> src="../img/usuarios/<?php echo $dado['imagem']; ?>"><?php }?></a><?php }else{ echo "";} ?></div></td>
     <td><?php echo $dado["nome"]; ?> </td>  
     <td><?php echo $dado["sobrenome"]; ?> </td>  
     <td><?php echo $dado["telefone"]; ?> </td>  

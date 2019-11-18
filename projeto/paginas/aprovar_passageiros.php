@@ -17,14 +17,15 @@ if(isset($_SESSION['id'])){
 if($tipo_usuario!=2){
   header('Location: ../index.php');
 }
-$aprovar_passageiros = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, sexo, telefone, aprovado, matricula, curso, turma, rua, numero, bairro, cidade from usuarios, passageiros, enderecos where aprovado = 0 and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id");
+$aprovar_passageiros = $conexao->query("SELECT imagem, nome, sobrenome, email, cpf, rg, sexo, telefone, aprovado, matricula, curso, turma, rua, numero, bairro, cidade from usuarios, passageiros, enderecos where aprovado = 0 and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id");
 ?>
 
 
-
+<div>
 <table class="table">
 <thead>
     <tr>
+      <th scope="col">Foto</th>
       <th scope="col">Nome</th>
       <th scope="col">Sobrenome</th>
       <th scope="col">Email</th>
@@ -33,7 +34,6 @@ $aprovar_passageiros = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, 
       <th scope="col">Sexo</th>
       <th scope="col">Telefone</th>
       <th scope="col">Matricula</th>
-      <th scope="col">Curso</th>
       <th scope="col">Turma</th>
       <th scope="col">Rua</th>
       <th scope="col">Numero</th>
@@ -48,6 +48,7 @@ $aprovar_passageiros = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, 
   while($dado = $aprovar_passageiros->fetch_array()){ $i++ ?>
     <tbody>
     <form method="GET">
+    <td><?php if($dado['imagem'] != null){?><a href="../img/usuarios/<?php echo $dado['imagem']; ?>"><div style=""><img class="zoom" <?php if($dado['imagem'] != null){?> src="../img/usuarios/<?php echo $dado['imagem']; ?>"><?php }?></a><?php }else{ echo "";} ?></div></td>
     <td><?php echo $dado['nome']; ?></td>
     <td><?php echo $dado['sobrenome']; ?></td>
     <td><?php echo $dado['email']; ?></td>
@@ -57,7 +58,6 @@ $aprovar_passageiros = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, 
     <td><?php echo $dado['sexo']; ?></td>
     <td><?php echo $dado['telefone']; ?></td>
     <td><?php echo $dado['matricula']; ?></td>
-    <td><?php echo $dado['curso']; ?></td>
     <td><?php echo $dado['turma']; ?></td>
     <td><?php echo $dado['rua']; ?></td>
     <td><?php echo $dado['numero']; ?></td>
@@ -70,3 +70,4 @@ $aprovar_passageiros = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, 
     </form>
     </tbody>
 </table>
+</div>
