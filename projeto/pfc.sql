@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 17/11/2019 às 18:28
+-- Tempo de geração: 19/11/2019 às 20:46
 -- Versão do servidor: 10.4.6-MariaDB
 -- Versão do PHP: 7.3.9
 
@@ -43,18 +43,10 @@ CREATE TABLE `corridas` (
 --
 
 INSERT INTO `corridas` (`id_corrida`, `veiculo_id_veiculo`, `motorista_id_motorista`, `data_corrida`, `horario_ida`, `horario_volta`, `usuario_id_usuario`) VALUES
-(2, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
-(3, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
-(4, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
-(5, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
-(6, 1, 92, '1/02', 'Vai', 'Volta 17h', NULL),
 (7, 1, 130, '17/02', 'Vai', 'Volta 12h', 296),
-(8, 1, 92, '17/02', 'Vai', 'Volta 12h', NULL),
-(9, 1, 92, '17/02', 'Vai', 'Volta 12h', NULL),
-(10, 1, 92, '8/01', 'Vai', 'Volta 12h', NULL),
-(11, 1, 92, '8/01', 'Vai', 'Volta 12h', NULL),
-(12, 1, 92, '9/11', 'Vai', 'Volta 12h', 296),
-(13, 1, 126, '11/11', 'Vai', 'Volta 12h', 296);
+(12, 1, 92, '9/11', 'Nao vai', 'Volta 12h', 296),
+(13, 1, 126, '11/11', 'Nao vai', 'Volta 12h', 296),
+(14, 1, 126, '9/11', 'Nao vai ', 'Volta 12h', 299);
 
 -- --------------------------------------------------------
 
@@ -156,7 +148,7 @@ CREATE TABLE `passageiros` (
 --
 
 INSERT INTO `passageiros` (`id_passageiro`, `emp_cod_empresa`, `id_usuario_id`, `matricula`, `curso`, `turma`, `id_motorista_id`) VALUES
-(116, 1, 296, 2917238127, 'informatica', '3info2', 92),
+(116, 1, 296, 2917238127, 'informatica', '3info2', 110),
 (118, 1, 305, 2018391231, 'informatica', '3info2', NULL),
 (122, 1, 310, 1283912831, 'informatica', '3info2', 126),
 (125, 1, 313, 2017309888, 'informatica', '3info2', NULL),
@@ -214,19 +206,19 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `tipuser_tip_user`, `cpf`, `rg`, `email`, `nome`, `sobrenome`, `sexo`, `telefone`, `senha`, `aprovado`, `imagem`) VALUES
 (253, 2, 12938219381, 8912831, 'motora@gmail', 'luciano2', 'zanella', 'Masculino', 13892183912, 'd9b1d7db4cd6e70935368a1efb10e377', 1, NULL),
 (272, 1, 123123123, 123123, 'bruske@gmail', 'bruske', 'ober', 'Masculino', 1231231233, 'b59c67bf196a4758191e42f76670ceba', 1, NULL),
-(289, 2, 16749216478, 7987698, 'a@a', 'a', 'a', 'Masculino', 7128937129, '202cb962ac59075b964b07152d234b70', 1, '1574011657.png'),
+(289, 2, 16749216478, 7987698, 'a@a', 'a', 'a', 'Masculino', 7128937129, '202cb962ac59075b964b07152d234b70', 1, '1574100299.JPG'),
 (293, 2, 12412512412, 1312321, 'j@j', 'motorista', 'motorista', 'Masculino', 1391203128, '202cb962ac59075b964b07152d234b70', 1, NULL),
 (296, 1, 73712893721, 7381273, 'bp@gmail', 'brenon', 'paul', 'Masculino', 73819237921, '202cb962ac59075b964b07152d234b70', 1, NULL),
 (299, 1, 32323, 32323, 'kkl@kl', 'klkl', 'klkl', 'Masculino', 2222223333, '50a2c33221d835c9a5062f6eaa44abc1', 0, NULL),
-(305, 1, 18391293821, 1231231, 'c@gmail.com', 'iiiooo', 'iiioo', 'Masculino', 18232189391, '202cb962ac59075b964b07152d234b70', 0, NULL),
-(310, 1, 71289321788, 1273872, 'hehe@gmail', 'hehe', 'hehe', 'Masculino', 12378129371, '202cb962ac59075b964b07152d234b70', 0, NULL),
+(305, 1, 18391293821, 1231231, 'c@gmail.com', 'iiiooo', 'iiioo', 'Masculino', 18232189391, '202cb962ac59075b964b07152d234b70', 1, NULL),
+(310, 1, 71289321788, 1273872, 'hehe@gmail', 'hehe', 'hehe', 'Masculino', 12378129371, '202cb962ac59075b964b07152d234b70', 1, '1574077741.png'),
 (313, 1, 38901237809, 1283910, 'jaja@jaja', 'jjaja', 'jaja', 'Masculino', 81293812938, '202cb962ac59075b964b07152d234b70', 0, NULL),
 (316, 1, 31231231231, 1312312, 'jajaa@jaja', 'jjaja', 'jaja', 'Masculino', 81293812938, '202cb962ac59075b964b07152d234b70', 0, NULL),
 (317, 1, 31231231222, 1222312, 'ajajaa@jaja', 'jjaja', 'jaja', 'Masculino', 81293212938, '202cb962ac59075b964b07152d234b70', 0, NULL),
 (321, 1, 80931820983, 1839012, 'ioioio@ioio', 'ioioio', 'ioioioio', 'Masculino', 18293821938, '202cb962ac59075b964b07152d234b70', 0, NULL),
 (344, 1, 93812938129, 8192382, 'aeaeqwe@aa', 'aew', 'aew', 'Masculino', 12938193812, '202cb962ac59075b964b07152d234b70', 0, NULL),
 (345, 1, 93812938192, 2189312, 'josue@gmail', 'josue', 'silva', 'Masculino', 47932382938, '3d988dc765ab71877e076a474c6232dd', 1, NULL),
-(346, 1, 38129839128, 1289321, 'maria@gmail', 'maria', 'maria', 'Masculino', 12893812931, '202cb962ac59075b964b07152d234b70', 1, NULL),
+(346, 1, 38129839128, 1289321, 'maria@gmail', 'maria', 'maria', 'Masculino', 12893812931, '202cb962ac59075b964b07152d234b70', 1, '1574019317.JPG'),
 (349, 2, 12893128391, 1289312, 'anselmo@gmail', 'Anselmo', 'Wolf', 'Masculino', 8193891283, '202cb962ac59075b964b07152d234b70', 1, NULL),
 (350, 2, 11111111111, 1111111, '0@0', 'Indefinido', 'Indefinido', '1', 11111111111, '202cb962ac59075b964b07152d234b70', 1, NULL);
 
@@ -334,7 +326,7 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `corridas`
 --
 ALTER TABLE `corridas`
-  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `empresas`

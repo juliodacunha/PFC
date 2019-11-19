@@ -74,7 +74,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
                   <form action="../funcoes/Perfil.php" method="POST" enctype="multipart/form-data">
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="novafoto" name="novafoto" required>
+                        <input type="file" class="custom-file-input" id="novafoto" name="novafoto" required accept="image/*">
                         <label class="custom-file-label" for="novafoto"></label>
                       </div>
                       <div class="input-group-append">

@@ -28,18 +28,29 @@ if(isset($_POST['submit'])){
     $linha = mysqli_fetch_assoc($result);
     $rows[] = $linha;
     $id_motora = $rows[0]['id_motorista_id'];
+    
+
    
     //Insercao de dados
+
+    if(!empty($id_motorita)){
     $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', '$id_motora', 1, '$data', '$ida', '$volta') ";
 
-
-
-    if(mysqli_query($link, $sqlCorrida)){
-        echo '<div class="alert alert-light" role="alert"> Informações registradas com sucesso! </div>';
+        if(mysqli_query($link, $sqlCorrida)){
+            echo '<div class="alert alert-light" role="alert"> Informações registradas com sucesso! </div>';
+        }else{
+            echo "Error: " . $sqlCorrida . "<br>" .
+            mysqli_error($link);
+        }
     }else{
-        echo "Error: " . $sqlCorrida . "<br>" .
-        mysqli_error($link);
+        echo '<div class="alert alert-danger" role="alert">';
+        echo 'Você precisa ter um motorista responsável para ter uma corrida';
+        echo '</div>';
     }
+
+
+
+    
 
 }else{}
 
