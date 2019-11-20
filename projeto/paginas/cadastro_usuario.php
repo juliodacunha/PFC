@@ -28,7 +28,7 @@ require("../funcoes/cadastro_usuario.php");
                     <input type="hidden" id="tipuser_tip_user" name="tipuser_tip_user" value="1">
                     <input type="hidden" id="emp_cod_empresa" name="emp_cod_empresa" value="1">
                     <div class="col-md-3">
-                        <div class="form-group">
+                        <div class=>
                             <input type="text" class="form-control" placeholder="Primeiro nome *" id="nome" name="nome" value="<?php if(isset ($nome)){ echo $nome;} ?>" required minlength="1" maxlength="15">
                         </div>
                         <div class="form-group">
