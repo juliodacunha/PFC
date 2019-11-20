@@ -5,16 +5,12 @@ require('cabecalho.php');
 require('../funcoes/calendario.php');
 require('../funcoes/dados_corrida.php');
 
-
 //MostreCalendario('05');
 //echo "<br/>";
 ?>
 
 
 <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Selecione a data a ser alterada </h3>
-
-
-
 
 <?php
 

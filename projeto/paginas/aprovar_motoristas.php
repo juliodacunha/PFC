@@ -18,7 +18,7 @@ if($tipo_usuario!=2){
   header('Location: ../index.php');
 }
 //
-$aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, rg, sexo, telefone, aprovado, cnh from usuarios, motoristas where aprovado = 0 and id_usuario = user_iduser");
+$aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, imagem, rg, sexo, telefone, aprovado, cnh from usuarios, motoristas where aprovado = 0 and id_usuario = user_iduser");
 ?>
 
 <div class="container">

@@ -29,15 +29,31 @@ if(isset($_POST['submit'])){
     $rows[] = $linha;
     $id_motora = $rows[0]['id_motorista_id'];
     
-
+    $query2 = "select id_corrida from usuarios, corridas 
+    where id_usuario = usuario_id_usuario and data_corrida = '$data' and usuario_id_usuario = '$id_usuario'"; 
+    $result2 = mysqli_query($conexao, $query2);
+    $linha2 = mysqli_num_rows($result2);
+    $rows2 = [];
+    $linha2 = mysqli_fetch_assoc($result2);
+    $rows2[] = $linha2;
+    $id_corrida = $rows2[0]['id_corrida'];
    
     //Insercao de dados
 
-    if(!empty($id_motorita)){
-    $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', '$id_motora', 1, '$data', '$ida', '$volta') ";
+    if(!empty($id_motora)){
+        if(isset($id_corrida)){
+            $queryDeletar = "DELETE from corridas where data_corrida = '$data' and usuario_id_usuario = '$id_usuario'";
+            if (mysqli_query($conexao, $queryDeletar)) {
+                echo '<div class="alert alert-primary" role="alert">';
+                echo 'Seu antigo registro da corrida foi substitutido';
+                echo '</div>';
+            }
+        }
+
+        $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', '$id_motora', 1, '$data', '$ida', '$volta') ";
 
         if(mysqli_query($link, $sqlCorrida)){
-            echo '<div class="alert alert-light" role="alert"> Informações registradas com sucesso! </div>';
+            echo '<div class="alert alert-info" role="alert"> Informações registradas com sucesso! </div>';
         }else{
             echo "Error: " . $sqlCorrida . "<br>" .
             mysqli_error($link);

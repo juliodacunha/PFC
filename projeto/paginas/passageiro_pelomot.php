@@ -1,22 +1,9 @@
 <?php
-
+include('../funcoes/pagina_restrita.php');
+pagina_motorista();
 include('../funcoes/Verifica_login.php');
 require("cabecalho.php");
-//require("../funcoes/Lista_motoristas.php");
 $id_usuario = $_SESSION['id'];
-if(isset($_SESSION['id'])){
-  $id_usuario = $_SESSION['id'];
-  $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
-  $result = mysqli_query($conexao, $query);
-  $linha = mysqli_num_rows($result);
-  $rows = [];
-  $linha = mysqli_fetch_assoc($result);
-  $rows[] = $linha;
-  $tipo_usuario = $rows[0]['tipuser_tip_user'];
-}
-if($tipo_usuario!=2){
-  header('Location: ../index.php');
-}
 
 
 //Abaixo o código de busca no banco de dados sobre o formulário de perfil do passageiro

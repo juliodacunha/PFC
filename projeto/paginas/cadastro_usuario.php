@@ -90,7 +90,7 @@ require("../funcoes/cadastro_usuario.php");
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="foto" name="foto"
-                                accept="image/*">
+                                accept="image/*" required>
                                 <label class="custom-file-label" for="inputGroupFile01">Sua foto</label>
                             </div>
                         </div>
@@ -159,7 +159,7 @@ require("../funcoes/cadastro_usuario.php");
                         <div class="input-group">
                             <div class="custom-file mb-3 mt-1">
                                 <input type="file" class="custom-file-input" name="foto"
-                                accept="image/*">
+                                accept="image/*" required>
                                 <label class="custom-file-label" for="foto">Sua foto</label>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 <?php
-include('../funcoes/Verifica_login.php');
+include('../funcoes/pagina_restrita.php');
+pagina_motorista();
 require('cabecalho.php');
-
 $id_usuario = $_SESSION['id'];
 $query = "SELECT id_motorista FROM usuarios, motoristas WHERE id_usuario = $id_usuario AND user_iduser = id_usuario"; 
 $result = mysqli_query($conexao, $query);
@@ -10,7 +10,6 @@ $rows = [];
 $linha = mysqli_fetch_assoc($result);
 $rows[] = $linha;
 $id_motorista = $rows[0]['id_motorista'];
-
 $sql = $conexao->query("SELECT imagem, nome, sobrenome, rua, numero, bairro, complemento, cidade, cep, telefone, email, cpf, rg FROM usuarios, passageiros, enderecos WHERE id_usuario = id_usuario_id AND id_motorista_id = '$id_motorista' AND id_passageiro = id_passageiro_id ") or die ($conexao->error);
 ?>
 <html lang="en">

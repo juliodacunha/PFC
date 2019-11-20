@@ -1,6 +1,8 @@
 <?php
 require("cabecalho.php");
 require("../funcoes/calendario.php");
+include('../funcoes/pagina_restrita.php');
+pagina_motorista();
 ?>
 
 <html lang="en">

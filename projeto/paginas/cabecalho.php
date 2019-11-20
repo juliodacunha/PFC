@@ -1,6 +1,5 @@
 <?php
-
-include("../funcoes/Conexao.php");
+require("../funcoes/Conexao.php");
 require("head.php");
 if(!isset($_SESSION)){
     session_start();
@@ -50,7 +49,7 @@ if($tipo_usuario == 1){
     <a class="nav-link " href="calendario.php">Calendário</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link " href="van_passageiro.php">Sua van</a>
+    <a class="nav-link " href="ver_minhavan.php">Minha van</a>
 </li>
 
 ';

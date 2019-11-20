@@ -3,7 +3,7 @@ if(!isset($_SESSION)){
   session_start();
 }
 require("cabecalho.php");
-if(!$_SESSION['email']){
+if(!$_SESSION['id']){
   header('Location: ../index.php');
   exit;
 }
@@ -36,6 +36,20 @@ if (array_key_exists("cnh", $arrayMotorista)) {
   $row = $arrayPassageiro;
   $validar = 1;
 }
+$id_usuario = $_SESSION['id'];
+$query = "SELECT id_motorista_id FROM usuarios, passageiros WHERE id_usuario = $id_usuario AND id_usuario = id_usuario_id"; 
+$result = mysqli_query($conexao, $query);
+$linha = mysqli_num_rows($result);
+$rows = [];
+$linha = mysqli_fetch_assoc($result);
+$rows[] = $linha;
+$id_motorista = $rows[0]['id_motorista_id'];
+
+$descobrir_nome = $conexao->query("SELECT nome, sobrenome FROM usuarios, motoristas WHERE id_usuario = user_iduser and id_motorista = '$id_motorista'");
+while($info = $descobrir_nome->fetch_array()){
+  $nomemotorista = $info['nome']." ".$info['sobrenome'];
+}
+
 
 ?>
 
@@ -64,13 +78,15 @@ if (array_key_exists("cnh", $arrayMotorista)) {
         <div class="toppad" >
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title my-3 mb-5"><?php echo $row['nome']?> <?php echo $row['sobrenome']; ?></h3>
+              <h3 class="panel-title mt-3 mb-0"><?php echo $row['nome']?> <?php echo $row['sobrenome']; ?></h3>
+              <p class="panel-title mb-3 mt-1"><?php if(isset($nomemotorista)){ ?>passageiro de <?php echo $nomemotorista; }else{ if(isset ($row['curso'])){ echo "Você não tem um motorista"; }} ?></p>
             </div>
             <div id="perfil" style="none"> 
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " text-align="center"> 
-                  <img alt="User Pic" src="../img/usuarios/<?php echo $row['imagem']; ?>" class="img-thumbnail img-responsive"> 
+                <div class="col-md-3 col-lg-3 " text-align="center">
+                 
+                  <img alt="User Pic" src="../img/usuarios/<?php if(isset($row['imagem'])){ echo $row['imagem']; }else{ echo "semfoto.png"; } ?>" class="img-thumbnail img-responsive"> 
                   <form action="../funcoes/Perfil.php" method="POST" enctype="multipart/form-data">
                     <div class="input-group mb-3">
                       <div class="custom-file">
@@ -88,11 +104,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
                     <tbody>
                       <tr>
                         <td>Nome:</td>
-                        <td><?php echo $row['nome']; ?></td>                      
-                      </tr>
-                      <tr>
-                        <td>Sobrenome:</td>
-                        <td><?php echo $row['sobrenome']; ?></td>
+                        <td><?php echo $row['nome']." ".$row['sobrenome']; ?></td>                      
                       </tr>
                       <tr>
                         <td>CPF</td>
@@ -111,10 +123,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
                         <td>Email</td>
                         <td><?php echo $row['email']; ?></a></td>
                       </tr>
-                      <tr>
-                        <td>Senha</td>
-                        <td><?php echo $row['senha']; ?></td>                           
-                      </tr>
+                      
 
                       <?php if(isset ($row['curso'])): ?>
 
@@ -213,7 +222,7 @@ if (array_key_exists("cnh", $arrayMotorista)) {
                   </tr>
                   <tr>
                     <td>Senha</td>
-                    <td><input type="text" class="form-control" value="<?php echo $row['senha']; ?>" placeholder="Senha" name="novosenha" required></td>
+                    <td><input type="password" class="form-control" value="<?php echo $row['senha']; ?>" placeholder="Senha" name="novosenha" required></td>
                   </tr>
                   <?php if(isset ($row['cnh'])): ?>
                   <tr>

@@ -1,23 +1,12 @@
 <?php
 require('cabecalho.php');
+include('../funcoes/pagina_restrita.php');
+pagina_motorista();
 if(!isset($_SESSION)){
     session_start();
 }
 $cpf = $_GET['cpf'];
-//apenas motoristas podem ver a página
-if(isset($_SESSION['id'])){
-    $id_usuario = $_SESSION['id'];
-    $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
-    $result = mysqli_query($conexao, $query);
-    $linha = mysqli_num_rows($result);
-    $rows = [];
-    $linha = mysqli_fetch_assoc($result);
-    $rows[] = $linha;
-    $tipo_usuario = $rows[0]['tipuser_tip_user'];
-}
-if($tipo_usuario!=2){
-    header('Location: ../index.php');
-}
+
 //descobrir ID do usuário a ser excluido
 $query = "select id_end_passageiro, id_passageiro, id_usuario, nome, email, matricula, cep from enderecos, passageiros, usuarios where cpf = '$cpf' and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id"; 
 $result = mysqli_query($conexao, $query);

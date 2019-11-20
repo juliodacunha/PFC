@@ -1,23 +1,11 @@
 <?php
 require('cabecalho.php');
+include('../funcoes/pagina_restrita.php');
+pagina_motorista();
 if(!isset($_SESSION)){
     session_start();
 }
 $cpf = $_GET['cpf'];
-//apenas motoristas podem ver a página
-if(isset($_SESSION['id'])){
-    $id_usuario = $_SESSION['id'];
-    $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
-    $result = mysqli_query($conexao, $query);
-    $linha = mysqli_num_rows($result);
-    $rows = [];
-    $linha = mysqli_fetch_assoc($result);
-    $rows[] = $linha;
-    $tipo_usuario = $rows[0]['tipuser_tip_user'];
-}
-if($tipo_usuario!=2){
-    header('Location: ../index.php');
-}
 //linhas abaixo para descobrir o id do usuário
 $query = "select id_motorista, id_usuario, nome, email, cnh from motoristas, usuarios where cpf = '$cpf' and user_iduser = id_usuario"; 
 $result = mysqli_query($conexao, $query);
