@@ -3,6 +3,7 @@ session_start();
 require("head.php");
 require("cabecalho.php");
 //apenas motoristas podem ver a página
+  
 if(isset($_SESSION['id'])){
     $id_usuario = $_SESSION['id'];
     $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
