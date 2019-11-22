@@ -52,7 +52,9 @@ if(isset($_POST['enviar'])){
                 $sql = "DELETE FROM usuarios WHERE id_usuario = '$id_usuario'";
                 if (mysqli_query($conexao, $sql)) {
                     echo "Usuário excluido com sucesso";
-                    header('refresh:2; url=aprovar_motoristas.php');
+                    $url="aprovar_motoristas.php";
+                    echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+                    echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
                 }
             }
         } else {
@@ -62,7 +64,10 @@ if(isset($_POST['enviar'])){
         $sql = "UPDATE usuarios SET aprovado = '$aprovado' WHERE cpf = '$cpf'";
         if (mysqli_query($conexao, $sql)) {
             echo "Confirmado! <br>";
-            header('refresh:1;url=aprovar_passageiros.php');
+            $url="aprovar_passageiros.php";
+            echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+            echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
+            
         }
     }    
 }  

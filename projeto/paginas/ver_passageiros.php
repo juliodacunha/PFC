@@ -80,6 +80,7 @@ if($tipo_usuario ==2){
   <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Dados de seus passageiros</h3>
 
   <div class="container">
+  
   <div class="col-md-12 register-right">
       <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
           <li class="nav-item">
@@ -92,7 +93,8 @@ if($tipo_usuario ==2){
       <!-- IDA -->
       <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <table class="table my-5 table-bordered" style= "border;" >
+          <div class="table-responsive">
+            <table class="table my-5 table-bordered table-striped" style= "border;" >
               <thead class="thead-light">
                 <tr>
                   <th scope="col" style="width:  8.1%">Vão</th>
@@ -114,7 +116,7 @@ if($tipo_usuario ==2){
               <?php } ?>
             </table>
         
-            <table class="table my-5 table-bordered" style= "border;" >
+            <table class="table my-5 table-bordered table-striped" style= "border;" >
               <thead class="thead-light">
                 <tr>
                   <th scope="col" style="width:  8.1%">Não vão</th>
@@ -136,13 +138,14 @@ if($tipo_usuario ==2){
               <?php } ?>
             </table>
           </div>
+          </div>
 
         <!-- VOLTA -->
 
         <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-        <table class="table my-5 table-bordered" style= "border;" >
+        <div class="table-responsive">
+        <table class="table my-5 table-bordered table-striped" style= "border;" >
               <thead class="thead-light">
                 <tr>
                   <th scope="col" style="width:  8.5%">12h</th>
@@ -164,7 +167,7 @@ if($tipo_usuario ==2){
               <?php } ?>
             </table>
 
-            <table class="table my-5 table-bordered" style= "border;" >
+            <table class="table my-5 table-bordered table-striped" style= "border;" >
               <thead class="thead-light">
                 <tr>
                   <th scope="col" style="width:  8.5%">17h</th>
@@ -186,7 +189,7 @@ if($tipo_usuario ==2){
               <?php } ?>
             </table>
 
-            <table class="table my-5 table-bordered" style= "border;" >
+            <table class="table my-5 table-bordered table-striped" style= "border;" >
               <thead class="thead-light">
                 <tr>
                   <th scope="col" style="width:  8.5%">Não volta</th>
@@ -208,6 +211,7 @@ if($tipo_usuario ==2){
               <?php } ?>
             </table>
 
+        </div>
         </div>
         </div>
   </div>

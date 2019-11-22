@@ -50,7 +50,6 @@ while($info = $descobrir_nome->fetch_array()){
   $nomemotorista = $info['nome']." ".$info['sobrenome'];
 }
 
-
 ?>
 
 <html lang="en">

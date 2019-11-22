@@ -4,7 +4,7 @@ if(!isset($_SESSION['id'])){
     session_start();
 }
 
-$link = mysqli_connect("localhost", "aluno", "aluno", "pfc");
+$link = mysqli_connect("localhost", "root", "", "pfc");
 if($link === false){
     die("ERROR: Não pôde conectar. " . mysqli_connect_error());
 }
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
             }
         }
 
-        $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, veiculo_id_veiculo, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', '$id_motora', 1, '$data', '$ida', '$volta') ";
+        $sqlCorrida= "INSERT INTO corridas (usuario_id_usuario, motorista_id_motorista, data_corrida, horario_ida, horario_volta) VALUES ('$id_usuario', '$id_motora', '$data', '$ida', '$volta') ";
 
         if(mysqli_query($link, $sqlCorrida)){
             echo '<div class="alert alert-info" role="alert"> Informações registradas com sucesso! </div>';
@@ -64,14 +64,7 @@ if(isset($_POST['submit'])){
         echo '</div>';
     }
 
-
-
-    
-
 }else{}
-
-
-
 
 // Fechar conexão
 mysqli_close($link);

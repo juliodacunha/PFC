@@ -2,6 +2,7 @@
 if(!isset($_SESSION)){
     session_start();
 }
+
 require('Conexao.php');
 $id_usuario = $_SESSION['id'];
 

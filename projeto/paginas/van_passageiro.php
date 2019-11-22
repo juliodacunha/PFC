@@ -17,10 +17,11 @@ $sql = $conexao->query("SELECT imagem, nome, sobrenome, rua, numero, bairro, com
     <title>Seus passageiros</title>
 </head>
 
-<div class="container">
+<div class="container-fluid">
+<div class="table-responsive">
 
 <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Seus passageiros</h3>
-<table class="table">
+<table class="table table-striped">
 <thead>
     <tr>
       <th scope="col">Foto</th>
@@ -57,3 +58,5 @@ $sql = $conexao->query("SELECT imagem, nome, sobrenome, rua, numero, bairro, com
     </tbody>
     <?php } ?>
 </table>
+</div>
+</div>

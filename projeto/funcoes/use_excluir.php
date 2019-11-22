@@ -1,7 +1,8 @@
 <?php
-session_start();
-include("../funcoes/Conexao.php");
-
+if(!isset($_SESSION)){
+    session_start();
+}
+include("../paginas/cabecalho.php");
 
 $usu_codigo = intval($_GET['codigo']);
 $consulta = $conexao->query("SELECT nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro 
@@ -18,12 +19,14 @@ while($dado = $consulta->fetch_array()){
     $id_usuario = $rows[0]['id_usuario'];
 }
 
-
 ?>
-<p> Tem ceteza que deseja excluir? </p>
-<form method="post">
-<input type="submit" name="confirmar_exclusao">
-</form>
+<div class="text-center mt-5">
+    <p> Tem ceteza que deseja excluir? </p>
+    <form method="post">
+        <button class="btn btn-primary" role="button"><a href="../paginas/passageiro_pelomot.php" style="text-decoration: none;">Não, desejo voltar</a></button><br>
+        <button class="btn btn-danger mt-1" type="submit" name="confirmar_exclusao">Sim</button>
+    </form>
+</div>
 <?php
 
 if(isset($_POST['confirmar_exclusao'])){
@@ -44,6 +47,3 @@ $sql = "DELETE FROM enderecos WHERE id_passageiro_id = '$usu_codigo'";
 
     }
 ?>
-<script>
-
-</script>

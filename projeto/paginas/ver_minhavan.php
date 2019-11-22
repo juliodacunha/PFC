@@ -28,16 +28,14 @@ if(empty($idmot)){
 <head>
     <title>Minha van</title>
 </head>
-
 <div class="container">
-
 <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;"><?php if(isset($nomemotorista)){ ?> Van do <?php echo $nomemotorista; }else{ $semmotorista = 1; echo "Você não tem uma van"; } ?></h3>
 
 <?php 
 if(!isset($semmotorista)){
 ?>  
 
-<table class="table">
+<table class="table table-striped">
 <thead>
     <tr>
       <th scope="col">Foto</th>

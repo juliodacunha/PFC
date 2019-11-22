@@ -1,10 +1,5 @@
 <?php
 
-
-/*
-     Código escrito por Talianderson Dias
-     em caso de dúvidas, mande um email para talianderson.web@gmail.com
-*/
 function MostreSemanas()
 {
     $semanas = "DSTQQSS";
@@ -130,7 +125,7 @@ function MostreCalendario( $mes  )
 
 function MostreCalendarioCompleto()
 {
-    echo '<table align = "center">';
+    echo '<table align = "center" >';
 	    $cont = 1;
 	    for( $j = 0; $j < 4; $j++ )
         {
@@ -152,5 +147,9 @@ function MostreCalendarioCompleto()
 	   echo "</table>";
 }
 
+/*
+     Código escrito por Talianderson Dias
+     talianderson.web@gmail.com
+*/
 
 ?>

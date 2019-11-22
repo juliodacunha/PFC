@@ -32,29 +32,26 @@ if (array_key_exists("cnh", $arrayMotorista)) {
     exit;
 }
 
-
 $consulta = $conexao->query("SELECT 
 id_usuario, imagem, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
 from usuarios, passageiros, enderecos 
-where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die ($conexao->error);
+where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and aprovado = 1") or die ($conexao->error);
 
 ?>
 <html lang="en">
 <head></head>
+<div class="container">
+<div class="table-responsive">
 <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Visualização dos dados de todos os passageiros</h3>
 
-<table class="table">
+<table class="table table-striped">
 <thead>
     <tr>
       <th scope="col">Foto</th>
       <th scope="col">Nome</th>
-      <th scope="col">Sobrenome</th>
       <th scope="col">Telefone</th>
       <th scope="col">Email</th>
-      <th scope="col">Sexo</th>
-      <th scope="col">Bairro</th>
-      <th scope="col">Rua</th>
-      <th scope="col">Número</th>
+      <th scope="col">Endereço</th>
       <th scope="col">Complemento</th>
       <th scope="col">Motorista</th>
       <th scope="col">Alterar motorista</th>
@@ -64,17 +61,11 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
   </thead>
 
    <?php while($dado = $consulta->fetch_array()){ ?>
-  <tbody>
-  
     <td><?php if($dado['imagem'] != null){?><a href="../img/usuarios/<?php echo $dado['imagem']; ?>"><div style=""><img class="zoom" <?php if($dado['imagem'] != null){?> src="../img/usuarios/<?php echo $dado['imagem']; ?>"><?php }?></a><?php }else{ echo "";} ?></div></td>
-    <td><?php echo $dado["nome"]; ?> </td>  
-    <td><?php echo $dado["sobrenome"]; ?> </td>  
+    <td><?php echo $dado["nome"].' '.$dado["sobrenome"]; ?> </td>  
     <td><?php echo $dado["telefone"]; ?> </td>  
     <td><?php echo $dado["email"]; ?> </td>  
-    <td><?php echo $dado["sexo"]; ?> </td>  
-    <td><?php echo $dado["bairro"]; ?> </td> 
-    <td><?php echo $dado["rua"]; ?> </td>  
-    <td><?php echo $dado["numero"]; ?> </td>  
+    <td><?php echo $dado["rua"].', '.$dado["numero"].' - '.$dado["bairro"]; ?> </td>  
     <td><?php echo $dado["complemento"]; ?> </td>  
     <td><?php 
     $idmot = $dado["id_motorista_id"];
@@ -113,9 +104,12 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id") or die (
     </form>
 
     <td> <button type="submit" class="btn btn-primary btn-sm"><a href="../funcoes/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></button></td>
+  
   </tbody>
   <?php }?>
 </table>
+</div>
+</div>
 
 <?php
 if(isset($_GET['alterar'])){

@@ -42,9 +42,6 @@ if(isset($_POST['logar'])){
                 $_SESSION['email'] = $email;
                 header('Location: ../paginas/perfil.php'); 
                 exit(); 
-            // }else{
-            //     header('Location: ../paginas/erro.php'); 
-            // }
         }else{
         //usuário nao autenticado
         }

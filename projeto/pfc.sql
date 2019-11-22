@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 19/11/2019 às 20:46
+-- Tempo de geração: 22/11/2019 às 19:07
 -- Versão do servidor: 10.4.6-MariaDB
 -- Versão do PHP: 7.3.9
 
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `corridas` (
   `id_corrida` int(10) NOT NULL,
-  `veiculo_id_veiculo` int(4) DEFAULT NULL,
   `motorista_id_motorista` int(3) DEFAULT NULL,
   `data_corrida` varchar(20) NOT NULL,
   `horario_ida` varchar(20) NOT NULL,
@@ -42,11 +41,10 @@ CREATE TABLE `corridas` (
 -- Despejando dados para a tabela `corridas`
 --
 
-INSERT INTO `corridas` (`id_corrida`, `veiculo_id_veiculo`, `motorista_id_motorista`, `data_corrida`, `horario_ida`, `horario_volta`, `usuario_id_usuario`) VALUES
-(7, 1, 130, '17/02', 'Vai', 'Volta 12h', 296),
-(12, 1, 92, '9/11', 'Nao vai', 'Volta 12h', 296),
-(13, 1, 126, '11/11', 'Nao vai', 'Volta 12h', 296),
-(14, 1, 126, '9/11', 'Nao vai ', 'Volta 12h', 299);
+INSERT INTO `corridas` (`id_corrida`, `motorista_id_motorista`, `data_corrida`, `horario_ida`, `horario_volta`, `usuario_id_usuario`) VALUES
+(32, 144, '28/11', 'Nao vai', 'Volta 12h', 354),
+(33, 144, '22/11', 'Vai', 'Nao volta', 354),
+(34, 144, '29/11', 'Nao vai', 'Volta 12h', 354);
 
 -- --------------------------------------------------------
 
@@ -90,16 +88,17 @@ CREATE TABLE `enderecos` (
 --
 
 INSERT INTO `enderecos` (`id_end_passageiro`, `id_passageiro_id`, `cep`, `rua`, `numero`, `bairro`, `estado`, `cidade`, `complemento`) VALUES
-(181, 116, 13812371, 'rua', 2, 'jariva', 'sc', 'joinville', 'casa'),
-(183, 118, 81232179, 'rua', 1, 'jariva', 'sc', 'jlle', 'casa'),
-(187, 122, 81128732, 'rua', 44, 'jariva', 'sc', 'jlle', 'casa'),
-(190, 125, 19283912, 'rua', 1, 'itaum', 'sc', 'joinville', 'casa'),
-(191, 126, 11251241, 'rua', 1, 'itaum', 'sc', 'joinville', 'casa'),
-(192, 127, 3123123, 'rua', 1, 'itaum', 'sc', 'joinville', 'casa'),
-(196, 131, 19283921, 'rua', 2, 'nsei', 'sc', 'jaragua', 'casa'),
-(218, 153, 12983812, 'rsjds', 2, 'casasa', 'sc', 'casasa', 'casa'),
-(219, 154, 18231293, 'xv de novembro', 890, 'gloria', 'sc', 'joinville', 'apt 08'),
-(220, 155, 12893812, 'lages', 889, 'norte', 'sc', 'mafra', 'casa');
+(221, 156, 89204665, 'Recife', 892, 'AmÃ©rica', 'SC', 'Joinville', 'Casa azul'),
+(222, 157, 89223390, 'Dos UniversitÃ¡rios', 78, 'Jardim Sofia', 'SC', 'Joinville', 'Casa azul'),
+(223, 158, 89216215, 'Evaristo da Veiga', 788, 'GlÃ³ria', 'SC', 'Joinville', 'Casa branca'),
+(224, 159, 89227186, 'ServidÃ£o Santo Amadeu', 788, 'IririÃº', 'SC', 'Joinville', 'Apt 08'),
+(225, 160, 89203358, 'IjuÃ­', 788, 'Anita Garibaldi', 'SC', 'Joinville', 'Apt 02'),
+(226, 161, 89229220, 'Ouro Preto', 788, 'FÃ¡tima', 'SC', 'Joinville', 'Casa branca'),
+(227, 162, 89226667, 'Iapetus', 88, 'Jardim ParaÃ­so', 'SC', 'Joinville', 'Casa de 1 andar'),
+(228, 163, 89207575, 'Rua Pedro EstevÃ£o', 623, 'Guanabara', 'SC', 'Joinville', 'Casa grande'),
+(229, 164, 89239655, 'Rua Elza Nielson', 127, 'Pirabeiraba', 'SC', 'Joinville', 'Rio Bonito'),
+(230, 166, 89207550, 'Rua Professora LÃºcia Lopes', 788, 'Guanabara', 'SC', 'Joinville', 'Kitnet'),
+(231, 167, 89225630, 'Rua Francisco Klein', 25, 'Aventureiro', 'SC', 'Joinville', 'Bar do Pedro');
 
 -- --------------------------------------------------------
 
@@ -120,12 +119,9 @@ CREATE TABLE `motoristas` (
 --
 
 INSERT INTO `motoristas` (`id_motorista`, `emp_idempresa`, `user_iduser`, `cnh`, `ativo`) VALUES
-(92, 1, 253, 7812381293, 1),
-(110, 1, 272, 1414124124, 1),
-(126, 1, 289, 1131232131, 1),
-(130, 1, 293, 7218931232, 1),
-(139, 1, 349, 8912389213, 1),
-(140, 1, 350, 1111111111, 1);
+(144, 1, 368, 7128312738, 1),
+(145, 1, 369, 2718372189, 1),
+(146, 1, 370, 8129382131, 1);
 
 -- --------------------------------------------------------
 
@@ -148,16 +144,17 @@ CREATE TABLE `passageiros` (
 --
 
 INSERT INTO `passageiros` (`id_passageiro`, `emp_cod_empresa`, `id_usuario_id`, `matricula`, `curso`, `turma`, `id_motorista_id`) VALUES
-(116, 1, 296, 2917238127, 'informatica', '3info2', 110),
-(118, 1, 305, 2018391231, 'informatica', '3info2', NULL),
-(122, 1, 310, 1283912831, 'informatica', '3info2', 126),
-(125, 1, 313, 2017309888, 'informatica', '3info2', NULL),
-(126, 1, 316, 2017309488, 'informatica', '3info2', 126),
-(127, 1, 317, 2217309488, 'informatica', '3info2', NULL),
-(131, 1, 321, 2189312312, 'informatica', '3info3', 130),
-(153, 1, 344, 1289381293, 'hdjhasjdhasj', 'hjasdhjasd', NULL),
-(154, 1, 345, 2017309777, 'agropecuaria', '3agro2', 139),
-(155, 1, 346, 2191293123, 'lica', 'lica2', NULL);
+(156, 1, 354, 2017839283, 'AgropecuÃ¡ria', '3agro1', 144),
+(157, 1, 355, 2017309273, 'InformÃ¡tica', '3info2', NULL),
+(158, 1, 356, 2018173812, 'InformÃ¡tica', '2info2', NULL),
+(159, 1, 357, 2017812931, 'InformÃ¡tica', '3INFO3', NULL),
+(160, 1, 358, 2017183921, 'InformÃ¡tica', '3INFO@', NULL),
+(161, 1, 359, 2017128391, 'AgropecuÃ¡ria', '3AGRO1', NULL),
+(162, 1, 360, 2017128931, 'InformÃ¡tica', '3INFO1', NULL),
+(163, 1, 361, 2017182931, 'InformÃ¡tica', '3INFO2', NULL),
+(164, 1, 362, 2016182392, 'QuÃ­mica', '4QUIMI', NULL),
+(166, 1, 365, 2018129321, 'AgropecuÃ¡ria', '2AGRO2', NULL),
+(167, 1, 367, 2019182931, 'AgropecuÃ¡ria', '1AGRO1', NULL);
 
 -- --------------------------------------------------------
 
@@ -204,23 +201,21 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `tipuser_tip_user`, `cpf`, `rg`, `email`, `nome`, `sobrenome`, `sexo`, `telefone`, `senha`, `aprovado`, `imagem`) VALUES
-(253, 2, 12938219381, 8912831, 'motora@gmail', 'luciano2', 'zanella', 'Masculino', 13892183912, 'd9b1d7db4cd6e70935368a1efb10e377', 1, NULL),
-(272, 1, 123123123, 123123, 'bruske@gmail', 'bruske', 'ober', 'Masculino', 1231231233, 'b59c67bf196a4758191e42f76670ceba', 1, NULL),
-(289, 2, 16749216478, 7987698, 'a@a', 'a', 'a', 'Masculino', 7128937129, '202cb962ac59075b964b07152d234b70', 1, '1574100299.JPG'),
-(293, 2, 12412512412, 1312321, 'j@j', 'motorista', 'motorista', 'Masculino', 1391203128, '202cb962ac59075b964b07152d234b70', 1, NULL),
-(296, 1, 73712893721, 7381273, 'bp@gmail', 'brenon', 'paul', 'Masculino', 73819237921, '202cb962ac59075b964b07152d234b70', 1, NULL),
-(299, 1, 32323, 32323, 'kkl@kl', 'klkl', 'klkl', 'Masculino', 2222223333, '50a2c33221d835c9a5062f6eaa44abc1', 0, NULL),
-(305, 1, 18391293821, 1231231, 'c@gmail.com', 'iiiooo', 'iiioo', 'Masculino', 18232189391, '202cb962ac59075b964b07152d234b70', 1, NULL),
-(310, 1, 71289321788, 1273872, 'hehe@gmail', 'hehe', 'hehe', 'Masculino', 12378129371, '202cb962ac59075b964b07152d234b70', 1, '1574077741.png'),
-(313, 1, 38901237809, 1283910, 'jaja@jaja', 'jjaja', 'jaja', 'Masculino', 81293812938, '202cb962ac59075b964b07152d234b70', 0, NULL),
-(316, 1, 31231231231, 1312312, 'jajaa@jaja', 'jjaja', 'jaja', 'Masculino', 81293812938, '202cb962ac59075b964b07152d234b70', 0, NULL),
-(317, 1, 31231231222, 1222312, 'ajajaa@jaja', 'jjaja', 'jaja', 'Masculino', 81293212938, '202cb962ac59075b964b07152d234b70', 0, NULL),
-(321, 1, 80931820983, 1839012, 'ioioio@ioio', 'ioioio', 'ioioioio', 'Masculino', 18293821938, '202cb962ac59075b964b07152d234b70', 0, NULL),
-(344, 1, 93812938129, 8192382, 'aeaeqwe@aa', 'aew', 'aew', 'Masculino', 12938193812, '202cb962ac59075b964b07152d234b70', 0, NULL),
-(345, 1, 93812938192, 2189312, 'josue@gmail', 'josue', 'silva', 'Masculino', 47932382938, '3d988dc765ab71877e076a474c6232dd', 1, NULL),
-(346, 1, 38129839128, 1289321, 'maria@gmail', 'maria', 'maria', 'Masculino', 12893812931, '202cb962ac59075b964b07152d234b70', 1, '1574019317.JPG'),
-(349, 2, 12893128391, 1289312, 'anselmo@gmail', 'Anselmo', 'Wolf', 'Masculino', 8193891283, '202cb962ac59075b964b07152d234b70', 1, NULL),
-(350, 2, 11111111111, 1111111, '0@0', 'Indefinido', 'Indefinido', '1', 11111111111, '202cb962ac59075b964b07152d234b70', 1, NULL);
+(354, 1, 18931289312, 8293482, 'gabriel@gmail.com', 'Gabriel', 'Barbosa', 'Masculino', 47828392328, '202cb962ac59075b964b07152d234b70', 1, '1574440228.jpg'),
+(355, 1, 12873217831, 8392173, 'filipe@gmail.com', 'Filipe', 'Luis', 'Masculino', 47987283728, '202cb962ac59075b964b07152d234b70', 1, '1574277082.jpg'),
+(356, 1, 17823213123, 6819381, 'bruno@gmail.com', 'Bruno', 'Henrique', 'Masculino', 47981371283, '202cb962ac59075b964b07152d234b70', 0, '1574277206.jpg'),
+(357, 1, 17289137129, 6182931, 'diego@gmail.com', 'Diego', 'Ribas', 'Masculino', 47981263712, '202cb962ac59075b964b07152d234b70', 0, '1574420933.jpg'),
+(358, 1, 12783127832, 6712831, 'giorgian@gmail.com', 'Giorgian', 'Arrascaeta', 'Masculino', 47912783127, '202cb962ac59075b964b07152d234b70', 0, '1574421096.jpg'),
+(359, 1, 18123718371, 5712938, 'willian@gmail.com', 'Willian', 'ArÃ£o', 'Masculino', 47912783217, '202cb962ac59075b964b07152d234b70', 0, '1574421170.jpg'),
+(360, 1, 12178327381, 7128312, 'dejan@gmail.com', 'Dejan', 'Petkovic', 'Masculino', 47921783173, '202cb962ac59075b964b07152d234b70', 0, '1574428286.jpg'),
+(361, 1, 12731893972, 7128372, 'david@gmail.com', 'David', 'Braz', 'Masculino', 47988123671, '202cb962ac59075b964b07152d234b70', 0, '1574428352.jpeg'),
+(362, 1, 12712837128, 6712839, 'philippe@gmail.com', 'Philippe', 'Coutinho', 'Masculino', 47981273812, '202cb962ac59075b964b07152d234b70', 0, '1574428519.jpg'),
+(363, 1, 12713891273, 6712893, 'lucas@gmail.com', 'Lucas', 'Paquetá', 'Masculino', 47981738217, '202cb962ac59075b964b07152d234b70', 0, '1574428630.jpeg'),
+(365, 1, 81293812938, 8129382, 'alisson@gmail.com', 'Alisson', 'Becker', 'Masculino', 47981278321, '202cb962ac59075b964b07152d234b70', 0, '1574428719.jpg'),
+(367, 1, 17283717312, 6127381, 'roberto@gmail.com', 'Roberto', 'Firmino', 'Masculino', 47917283127, '202cb962ac59075b964b07152d234b70', 0, '1574428915.jpg'),
+(368, 2, 12632900948, 6819577, 'julio@gmail.com', 'Julio', 'Da Cunha', 'Masculino', 4798127832, '202cb962ac59075b964b07152d234b70', 1, '1574429076.jpg'),
+(369, 2, 12681293821, 6718237, 'iris@gmail.com', 'Iris', 'Mebs', 'Feminino', 4798172837, '202cb962ac59075b964b07152d234b70', 0, '1574429106.jpg'),
+(370, 2, 17238127381, 6127382, 'andre@gmail.com', 'Andre', 'Oliveira', 'Masculino', 4797128312, '202cb962ac59075b964b07152d234b70', 0, '1574429140.jpg');
 
 -- --------------------------------------------------------
 
@@ -240,13 +235,6 @@ CREATE TABLE `veiculos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `veiculos`
---
-
-INSERT INTO `veiculos` (`id_veiculo`, `cnpj`, `cod_empresa`, `placa`, `marca`, `modelo`, `ano`, `cor`) VALUES
-(1, 1, 1, 'mka2706', 'kk', 'onix', 2020, 'azxyl');
-
---
 -- Índices de tabelas apagadas
 --
 
@@ -255,7 +243,6 @@ INSERT INTO `veiculos` (`id_veiculo`, `cnpj`, `cod_empresa`, `placa`, `marca`, `
 --
 ALTER TABLE `corridas`
   ADD PRIMARY KEY (`id_corrida`),
-  ADD KEY `veiculo_id_veiculo` (`veiculo_id_veiculo`),
   ADD KEY `motorista_id_motorista` (`motorista_id_motorista`),
   ADD KEY `corridas_ibfk_3` (`usuario_id_usuario`);
 
@@ -326,7 +313,7 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `corridas`
 --
 ALTER TABLE `corridas`
-  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `empresas`
@@ -338,19 +325,19 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id_end_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+  MODIFY `id_end_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT de tabela `motoristas`
 --
 ALTER TABLE `motoristas`
-  MODIFY `id_motorista` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id_motorista` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT de tabela `passageiros`
 --
 ALTER TABLE `passageiros`
-  MODIFY `id_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+  MODIFY `id_passageiro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT de tabela `tipo_usuarios`
@@ -362,7 +349,7 @@ ALTER TABLE `tipo_usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
+  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT de tabela `veiculos`
@@ -378,7 +365,6 @@ ALTER TABLE `veiculos`
 -- Restrições para tabelas `corridas`
 --
 ALTER TABLE `corridas`
-  ADD CONSTRAINT `corridas_ibfk_1` FOREIGN KEY (`veiculo_id_veiculo`) REFERENCES `veiculos` (`id_veiculo`),
   ADD CONSTRAINT `corridas_ibfk_2` FOREIGN KEY (`motorista_id_motorista`) REFERENCES `motoristas` (`id_motorista`),
   ADD CONSTRAINT `corridas_ibfk_3` FOREIGN KEY (`usuario_id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 

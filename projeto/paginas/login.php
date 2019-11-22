@@ -8,11 +8,6 @@ if(isset($_SESSION['email'])){
     exit();
 }
 
-$string = "a";
-if(1 === preg_match('~[0-9]~', $string)){
-    echo "contem numero";
-}
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +32,7 @@ if(1 === preg_match('~[0-9]~', $string)){
                         <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="******">
                         <input type="submit" class="fadeIn fourth" value="entrar" name="logar">
                 </form>
-                
-
+            
                 <!-- Senha e registrar -->
                 <div id="formFooter">
                     <small class="form-text text-muted"><a href="cadastro_usuario.php">Não possui uma conta?</a></small>

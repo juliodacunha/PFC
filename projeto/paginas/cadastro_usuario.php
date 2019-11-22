@@ -29,7 +29,7 @@ require("../funcoes/cadastro_usuario.php");
                     <input type="hidden" id="emp_cod_empresa" name="emp_cod_empresa" value="1">
                     <div class="col-md-3">
                         <div class=>
-                            <input type="text" class="form-control" placeholder="Primeiro nome *" id="nome" name="nome" value="<?php if(isset ($nome)){ echo $nome;} ?>" required minlength="1" maxlength="15">
+                            <input type="text" class="form-control mb-4" placeholder="Primeiro nome *" id="nome" name="nome" value="<?php if(isset ($nome)){ echo $nome;} ?>" required minlength="1" maxlength="15">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Ultimo nome *" id="sobrenome" name="sobrenome" value="<?php if(isset ($sobrenome)){ echo $sobrenome;} ?>" required minlength="1" maxlength="15">

@@ -1,8 +1,8 @@
 <?php
 if(!isset($_SESSION)){
-session_start();
+    session_start();
 }
-$link = mysqli_connect("localhost", "aluno", "aluno", "pfc");
+$link = mysqli_connect("localhost", "root", "", "pfc");
 if($link === false){
     die("ERROR: Não pôde conectar. " . mysqli_connect_error());
 }
@@ -230,13 +230,12 @@ if(isset($_POST['submit'])){
                     move_uploaded_file($_FILES['foto']['tmp_name'], $target.$newfilename);
                     echo "<div class='alert alert-success' role='alert'>
                     Registrado! Aguarde a aprovação de sua conta.
-                  </div>";
+                    </div>";
                     header('refresh: 5; url=login.php');
                 }
             }
         } 
     }else{
-        
         echo "Tente se cadastrar novamente. <br>";
     }  
 }
