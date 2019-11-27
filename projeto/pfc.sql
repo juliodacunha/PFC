@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 22/11/2019 às 19:07
+-- Tempo de geração: 27/11/2019 às 13:50
 -- Versão do servidor: 10.4.6-MariaDB
 -- Versão do PHP: 7.3.9
 
@@ -44,7 +44,8 @@ CREATE TABLE `corridas` (
 INSERT INTO `corridas` (`id_corrida`, `motorista_id_motorista`, `data_corrida`, `horario_ida`, `horario_volta`, `usuario_id_usuario`) VALUES
 (32, 144, '28/11', 'Nao vai', 'Volta 12h', 354),
 (33, 144, '22/11', 'Vai', 'Nao volta', 354),
-(34, 144, '29/11', 'Nao vai', 'Volta 12h', 354);
+(34, 144, '29/11', 'Nao vai', 'Volta 12h', 354),
+(36, 144, '5/01', 'Nao vai', 'Nao volta', 354);
 
 -- --------------------------------------------------------
 
@@ -313,7 +314,7 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `corridas`
 --
 ALTER TABLE `corridas`
-  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_corrida` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de tabela `empresas`

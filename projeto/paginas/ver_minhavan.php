@@ -1,7 +1,7 @@
 <?php
-include('../funcoes/Verifica_login.php');
+include('../backend/Verifica_login.php');
 require('cabecalho.php');
-include('../funcoes/pagina_restrita.php');
+include('../backend/pagina_restrita.php');
 pagina_passageiro();
 
 $id_usuario = $_SESSION['id'];

@@ -1,6 +1,6 @@
 <?php
 require("cabecalho.php");
-require("../funcoes/cadastro_usuario.php");
+require("../backend/cadastro_usuario.php");
 ?>
 
 <html lang="en">
@@ -94,15 +94,15 @@ require("../funcoes/cadastro_usuario.php");
                                 <label class="custom-file-label" for="inputGroupFile01">Sua foto</label>
                             </div>
                         </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input"  name="sexo" id="masculino" value="Masculino" checked>
-                                <label class="custom-control-label" for="masculino">Masculino</label>
-                            </div>
-                            
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="sexo" id="feminino" value="Feminino">
-                                <label class="custom-control-label" for="feminino">Feminino</label>
-                            </div>        
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input"  name="sexo" id="masculino" value="Masculino" checked>
+                            <label class="custom-control-label" for="masculino">Masculino</label>
+                        </div>
+                        
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="sexo" id="feminino" value="Feminino">
+                            <label class="custom-control-label" for="feminino">Feminino</label>
+                        </div>        
                     </div>
                 </div>
                 <input type="submit" class="btnRegister" style="float: right" name="registrar" value="Registrar-se"/>
@@ -156,13 +156,13 @@ require("../funcoes/cadastro_usuario.php");
                             </div>
                         </div>
                         <div class="col-md-4">
-                        <div class="input-group">
-                            <div class="custom-file mb-3 mt-1">
-                                <input type="file" class="custom-file-input" name="foto"
-                                accept="image/*" required>
-                                <label class="custom-file-label" for="foto">Sua foto</label>
+                            <div class="input-group">
+                                <div class="custom-file mb-3 mt-1">
+                                    <input type="file" class="custom-file-input" name="foto"
+                                    accept="image/*" required>
+                                    <label class="custom-file-label" for="foto">Sua foto</label>
+                                </div>
                             </div>
-                        </div>
                             <div class="form-group">
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input"  name="sexo" id="masc" value="Masculino" checked>
@@ -173,13 +173,12 @@ require("../funcoes/cadastro_usuario.php");
                                 <input type="radio" class="custom-control-input" name="sexo" id="fem" value="Feminino">
                                 <label class="custom-control-label" for="fem">Feminino</label>
                             </div>
-                            </div>
                         </div>
                     </div>
+                
                     <input type="submit" class="btnRegister" style="float: right" name="submit" value="Registrar"/>
                 </div>
             </form>
         </div>
     </div>
 </div>
-

@@ -1,7 +1,7 @@
 <?php
-include('../funcoes/pagina_restrita.php');
+include('../backend/pagina_restrita.php');
 pagina_motorista();
-include('../funcoes/Verifica_login.php');
+include('../backend/Verifica_login.php');
 require("cabecalho.php");
 $id_usuario = $_SESSION['id'];
 
@@ -103,7 +103,7 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and aprova
       <td> <button type="submit" class="btn btn-primary btn-sm" name="alterar">Alterar</button></td>
     </form>
 
-    <td> <button type="submit" class="btn btn-primary btn-sm"><a href="../funcoes/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></button></td>
+    <td> <button type="submit" class="btn btn-primary btn-sm"><a href="../backend/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></button></td>
   
   </tbody>
   <?php }?>

@@ -1,5 +1,5 @@
 <?php
-require("../funcoes/Conexao.php");
+require("../backend/Conexao.php");
 require("head.php");
 if(!isset($_SESSION)){
     session_start();
@@ -95,7 +95,7 @@ if(isset($_SESSION['id'])){
                 Olá, <?php echo $nomesobrenome; ?>
               </p>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="../funcoes/Logout.php">Sair</a>
+                <a class="dropdown-item" href="../backend/Logout.php">Sair</a>
               </div>
             </div>
           </li>

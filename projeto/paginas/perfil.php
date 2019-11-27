@@ -86,7 +86,7 @@ while($info = $descobrir_nome->fetch_array()){
                 <div class="col-md-3 col-lg-3 " text-align="center">
                  
                   <img alt="User Pic" src="../img/usuarios/<?php if(isset($row['imagem'])){ echo $row['imagem']; }else{ echo "semfoto.png"; } ?>" class="img-thumbnail img-responsive"> 
-                  <form action="../funcoes/Perfil.php" method="POST" enctype="multipart/form-data">
+                  <form action="../backend/Perfil.php" method="POST" enctype="multipart/form-data">
                     <div class="input-group mb-3">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="novafoto" name="novafoto" required accept="image/*">
@@ -196,7 +196,7 @@ while($info = $descobrir_nome->fetch_array()){
               ?>
               </div>
               <?php endif  ?>
-                <form action="../funcoes/Perfil.php" method="POST" enctype="multipart/form-data">
+                <form action="../backend/Perfil.php" method="POST" enctype="multipart/form-data">
                   <div class="crud">
                   <table class="crud">
                   <tr>

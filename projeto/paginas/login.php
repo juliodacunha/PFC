@@ -2,7 +2,7 @@
 error_reporting();
 require("head.php");
 require("cabecalho.php");
-require("../funcoes/Login.php");
+require("../backend/Login.php");
 if(isset($_SESSION['email'])){
     header('Location: perfil.php');
     exit();

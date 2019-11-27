@@ -1,9 +1,9 @@
 <?php
-include('../funcoes/Verifica_login.php');
+include('../backend/Verifica_login.php');
 require('head.php');
 require('cabecalho.php');
-require('../funcoes/calendario.php');
-require('../funcoes/dados_corrida.php');
+require('../backend/calendario.php');
+require('../backend/dados_corrida.php');
 
 ?>
 
@@ -26,8 +26,8 @@ if(isset($_GET['mes'])){
                 <div class='col' id='radio-1'>
                     <h4>Ida</h4>
                     <div class='custom-control custom-radio'>
-                        <input type='hidden' name='dia' value='$dia_escolhido' />
-                        <input type='hidden' name='mes' value='$mes_escolhido' />
+                        <input type='hidden' name='dia' value='<?php echo $dia_escolhido; ?>' />
+                        <input type='hidden' name='mes' value='<?php echo $mes_escolhido; ?>' />
                         <input type='radio' id='radio1' name='ida' class='custom-control-input' value='Vai' checked>
                         <label class='custom-control-label' for='radio1'>Vou de van</label>
                     </div>

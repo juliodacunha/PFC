@@ -1,7 +1,7 @@
 <?php
 require("cabecalho.php");
-require('../funcoes/calendario.php');
-include('../funcoes/pagina_restrita.php');
+require('../backend/calendario.php');
+include('../backend/pagina_restrita.php');
 pagina_motorista();
 $id_usuario = $_SESSION['id'];
 $query = "SELECT id_motorista FROM usuarios, motoristas WHERE id_usuario = $id_usuario AND user_iduser = id_usuario"; 

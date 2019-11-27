@@ -1,5 +1,5 @@
 <?php
-include('../funcoes/pagina_restrita.php');
+include('../backend/pagina_restrita.php');
 pagina_motorista();
 require('cabecalho.php');
 $id_usuario = $_SESSION['id'];
