@@ -2,7 +2,7 @@
 include('../backend/Verifica_login.php');
 require('cabecalho.php');
 $id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
-if($tipo_usuario!=2){ header('Location: ../index.php'); }
+if($tipo_usuario!=1){ header('Location: ../index.php'); }
 
 $id_usuario = $_SESSION['id'];
 $query = "SELECT id_motorista_id FROM usuarios, passageiros WHERE id_usuario = $id_usuario AND id_usuario = id_usuario_id"; 
