@@ -1,8 +1,8 @@
 <?php
 require("cabecalho.php");
 require("../backend/calendario.php");
-include('../backend/pagina_restrita.php');
-pagina_motorista();
+$id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
+if($tipo_usuario!=2){ header('Location: ../index.php'); }
 ?>
 
 <html lang="en">
@@ -10,14 +10,14 @@ pagina_motorista();
     <title>Verificar passageiros</title>
 </head>
 
-<h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Selecione a data para verificar os passageiros</h3>
+<h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Data para ver seus passageiros</h3>
 
 <?php
 
 if(isset($_SESSION['id'])){
   $id_usuario = $_SESSION['id'];
   $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
-  $result = mysqli_query($conexao, $query);
+  $result = mysqli_query($link, $query);
   $linha = mysqli_num_rows($result);
   $rows = [];
   $linha = mysqli_fetch_assoc($result);
@@ -37,7 +37,7 @@ if($tipo_usuario ==2){
       //echo $id_usuario;
       //Descobrir a id do motorista 
       $query = "select id_motorista from motoristas, usuarios where id_usuario = user_iduser and user_iduser = '$id_usuario'"; 
-      $result = mysqli_query($conexao, $query);
+      $result = mysqli_query($link, $query);
       $linha = mysqli_num_rows($result);
       $rows = [];
       $linha = mysqli_fetch_assoc($result);
@@ -46,32 +46,32 @@ if($tipo_usuario ==2){
       //echo $id_motora;
       
       //Descobrir os seus passageiros
-      $consulta1 = $conexao->query("SELECT nome, sobrenome, rua, bairro, complemento, numero, telefone 
+      $consulta1 = $link->query("SELECT nome, sobrenome, rua, bairro, complemento, numero, telefone 
       from usuarios, tipo_usuarios, passageiros, enderecos
       where  
       id_usuario not in(SELECT id_usuario from usuarios, corridas
       where usuario_id_usuario = id_usuario and data_corrida = '$data' and horario_ida <> 'Nao vou' )
-      and tipuser_tip_user = tip_user and descricao = 'passageiro' and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_motorista_id = '$id_motora'") or die ($conexao->error);
+      and tipuser_tip_user = tip_user and descricao = 'passageiro' and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_motorista_id = '$id_motora'") or die ($link->error);
 
-      $consulta2 = $conexao->query("SELECT 
+      $consulta2 = $link->query("SELECT 
       id_usuario, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
       from usuarios, passageiros, enderecos, corridas
-      where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_usuario = usuario_id_usuario and data_corrida = '$data' and horario_ida= 'Nao vai' and id_motorista_id = '$id_motora'") or die ($conexao->error);
+      where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_usuario = usuario_id_usuario and data_corrida = '$data' and horario_ida= 'Nao vai' and id_motorista_id = '$id_motora'") or die ($link->error);
 
-      $consulta3 = $conexao->query("SELECT nome, sobrenome, rua, bairro, complemento, numero, telefone
+      $consulta3 = $link->query("SELECT nome, sobrenome, rua, bairro, complemento, numero, telefone
       from usuarios, tipo_usuarios, passageiros, enderecos
       where id_usuario not in(SELECT id_usuario from usuarios, corridas
       where usuario_id_usuario = id_usuario and data_corrida = '$data' and horario_volta <> 'Volto 12h' and horario_volta <> 'Nao volto' )
-      and tipuser_tip_user = tip_user and descricao = 'passageiro' and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_motorista_id = '$id_motora'") or die ($conexao->error);
+      and tipuser_tip_user = tip_user and descricao = 'passageiro' and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_motorista_id = '$id_motora'") or die ($link->error);
 
-      $consulta4 = $conexao->query("SELECT 
+      $consulta4 = $link->query("SELECT 
       id_usuario, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
       from usuarios, passageiros, enderecos, corridas
-      where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_usuario = usuario_id_usuario and data_corrida = '$data' and horario_volta= 'Volta 12h' and id_motorista_id = '$id_motora'") or die ($conexao->error);
+      where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_usuario = usuario_id_usuario and data_corrida = '$data' and horario_volta= 'Volta 12h' and id_motorista_id = '$id_motora'") or die ($link->error);
 
-      $consulta5 = $conexao->query("SELECT id_usuario, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
+      $consulta5 = $link->query("SELECT id_usuario, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
       from usuarios, passageiros, enderecos, corridas
-      where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_usuario = usuario_id_usuario and data_corrida = '$data' and horario_volta = 'Nao volta' and id_motorista_id = '$id_motora' ") or die ($conexao->error);
+      where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and id_usuario = usuario_id_usuario and data_corrida = '$data' and horario_volta = 'Nao volta' and id_motorista_id = '$id_motora' ") or die ($link->error);
       
       echo "<p class='text-center my-5'>Exibindo informações da data $dia_escolhido/$mes_escolhido/2019, <a href='ver_todospassageiros.php'> altere o mês aqui</a> ou altere o dia selecionando no calendário acima.</p>";
       

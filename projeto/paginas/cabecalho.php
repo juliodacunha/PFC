@@ -1,5 +1,5 @@
 <?php
-require("../backend/Conexao.php");
+require_once("../backend/Conexao.php");
 require("head.php");
 if(!isset($_SESSION)){
     session_start();
@@ -8,7 +8,7 @@ if(isset($_SESSION['id'])){
   $id_usuario = $_SESSION['id'];
   //Código abaixo para verificar se o usuário é um motorista
   $query = "select tipuser_tip_user, nome, sobrenome from usuarios where id_usuario = '$id_usuario'"; 
-  $result = mysqli_query($conexao, $query);
+  $result = mysqli_query($link, $query);
   $linha = mysqli_num_rows($result);
   $rows = [];
   $linha = mysqli_fetch_assoc($result);
@@ -22,7 +22,7 @@ if(isset($_SESSION['id'])){
   <header>
     <!-- Menu -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f6f6f6">
-      <a class="navbar-brand" href="#"><img src="../img/logo.png" id="icon" alt="Icon" class="logo" style="width: 100px; height: 100px;"></a>
+      <a class="navbar-brand" href="../index.php"><img src="../img/logo.png" id="icon" alt="Icon" class="logo" style="width: 100px; height: 100px;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -61,7 +61,7 @@ if(isset($_SESSION['id'])){
           </li>
           <div class="dropdown show">
             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Gerenciar contas
+              Aprovar contas
             </a>
           <li>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

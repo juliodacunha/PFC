@@ -49,7 +49,7 @@ function MostreCalendario( $mes  )
     $diacorrente = 0;
 
     $diasemana = jddayofweek( cal_to_jd(CAL_GREGORIAN, $mes,"01",date('Y')) , 0 );	// função que descobre o dia da semana
-
+    echo "<div style='margin-right: 7%; margin-left: 7%;'>";
     echo "<table style='align-items: center; margin: auto; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;'>";
     echo "<tr>";
     echo "<td colspan = 7><h3>".$nome_mes."</h3></td>";
@@ -121,6 +121,7 @@ function MostreCalendario( $mes  )
     }
 
     echo "</table>";
+    echo "</div>";
 }
 
 function MostreCalendarioCompleto()

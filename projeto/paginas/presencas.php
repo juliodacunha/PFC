@@ -1,11 +1,11 @@
 <?php
 require("cabecalho.php");
 require('../backend/calendario.php');
-include('../backend/pagina_restrita.php');
-pagina_motorista();
+$id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
+if($tipo_usuario!=2){ header('Location: ../index.php'); }
 $id_usuario = $_SESSION['id'];
 $query = "SELECT id_motorista FROM usuarios, motoristas WHERE id_usuario = $id_usuario AND user_iduser = id_usuario"; 
-$result = mysqli_query($conexao, $query);
+$result = mysqli_query($link, $query);
 $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
@@ -17,7 +17,7 @@ $id_motorista = $rows[0]['id_motorista'];
 if(isset($_SESSION['id'])){
   $id_usuario = $_SESSION['id'];
   $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
-  $result = mysqli_query($conexao, $query);
+  $result = mysqli_query($link, $query);
   $linha = mysqli_num_rows($result);
   $rows = [];
   $linha = mysqli_fetch_assoc($result);
@@ -33,7 +33,7 @@ if(isset($_GET['mes'])){
     $dia_escolhido = $_GET['dia'];
     $data_corrida = $dia_escolhido."/".$mes_escolhido;
 
-    $sql = $conexao->query("SELECT nome, sobrenome, telefone, rua, numero, complemento, bairro 
+    $sql = $link->query("SELECT nome, sobrenome, telefone, rua, numero, complemento, bairro 
     FROM usuarios, passageiros, enderecos, corridas
     WHERE id_usuario = usuario_id_usuario and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and data_corrida = '$data_corrida' and motorista_id_motorista = $id_motorista;");
     echo "<div class='mt-5'></div>";

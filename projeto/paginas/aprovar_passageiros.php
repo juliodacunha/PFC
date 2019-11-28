@@ -1,11 +1,11 @@
 <?php
 require("cabecalho.php");
-include('../backend/pagina_restrita.php');
-pagina_motorista();
+$id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
+if($tipo_usuario!=2){ header('Location: ../index.php'); }
 if(!isset($_SESSION)){
   session_start();
 }
-$aprovar_passageiros = $conexao->query("SELECT imagem, nome, sobrenome, email, cpf, rg, sexo, telefone, aprovado, matricula, curso, turma, rua, numero, bairro, cidade from usuarios, passageiros, enderecos where aprovado = 0 and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id");
+$aprovar_passageiros = $link->query("SELECT imagem, nome, sobrenome, email, cpf, rg, sexo, telefone, aprovado, matricula, curso, turma, rua, numero, bairro, cidade from usuarios, passageiros, enderecos where aprovado = 0 and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id");
 ?>
 
 <div class="container-fluid">
@@ -45,7 +45,7 @@ $aprovar_passageiros = $conexao->query("SELECT imagem, nome, sobrenome, email, c
         <td><?php echo $dado["rua"].', '.$dado["numero"].' - '.$dado["bairro"]; ?> </td>  
         <td><?php echo $dado['cidade']; ?></td>
         <input type="hidden" name="cpf" id="cpf" value="<?php echo $cpf; ?>">
-        <td><button type="submit" class="btn btn-primary btn-sm" name="aprovacao"> <a href="confirmar_passageiro.php?cpf=<?php echo $cpf; ?>">confirmar</a></button></td>
+        <td><button type="submit" class="btn btn-dark btn-sm" name="aprovacao"> <a style="color: white;" href="confirmar_passageiro.php?cpf=<?php echo $cpf; ?>">confirmar</a></button></td>
         <?php } ?>
         </form>
       </tbody>

@@ -6,10 +6,10 @@ if(!isset($_SESSION)){
 
 function pagina_motorista () {
     if(isset($_SESSION['id'])){
-        $conexao = mysqli_connect('localhost', 'root', '', 'pfc') or DIE("Nao foi possível conectar");
+        require("Conexao.php");
         $id_usuario = $_SESSION['id'];
         $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
-        $result = mysqli_query($conexao, $query);
+        $result = mysqli_query($link, $query);
         $linha = mysqli_num_rows($result);
         $rows = [];
         $linha = mysqli_fetch_assoc($result);
@@ -23,10 +23,10 @@ function pagina_motorista () {
 
 function pagina_passageiro () {
     if(isset($_SESSION['id'])){
-        $conexao = mysqli_connect('localhost', 'root', '', 'pfc') or DIE("Nao foi possível conectar");
+        require("Conexao.php");
         $id_usuario = $_SESSION['id'];
         $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; 
-        $result = mysqli_query($conexao, $query);
+        $result = mysqli_query($link, $query);
         $linha = mysqli_num_rows($result);
         $rows = [];
         $linha = mysqli_fetch_assoc($result);

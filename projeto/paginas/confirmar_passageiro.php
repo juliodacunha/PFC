@@ -1,7 +1,7 @@
 <?php
 require('cabecalho.php');
-include('../backend/pagina_restrita.php');
-pagina_motorista();
+$id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
+if($tipo_usuario!=2){ header('Location: ../index.php'); }
 if(!isset($_SESSION)){
     session_start();
 }
@@ -9,7 +9,7 @@ $cpf = $_GET['cpf'];
 
 //descobrir ID do usuário a ser excluido
 $query = "select id_end_passageiro, id_passageiro, id_usuario, nome, email, matricula, cep from enderecos, passageiros, usuarios where cpf = '$cpf' and id_usuario = id_usuario_id and id_passageiro = id_passageiro_id"; 
-$result = mysqli_query($conexao, $query);
+$result = mysqli_query($link, $query);
 $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
@@ -36,7 +36,7 @@ $cep = $rows[0]['cep'];
                 <button class="btn btn-primary btn-sm" type="submit" name="enviar">Enviar</button>
             </div>
         </form>    
-    <button class="btn btn-secondary btn-sm" type="button" name="enviar"><a href="aprovar_motoristas.php">Voltar</button>
+    <button class="btn btn-secondary btn-sm" type="button" name="enviar"><a style="color: white;" href="aprovar_passageiros.php">Voltar</button>
     </div>
 </div>
 
@@ -46,23 +46,23 @@ if(isset($_POST['enviar'])){
     if($aprovado == 2){ //funcao de excluir
         //linhas abaixo para excluir o usuário
         $sql = "DELETE FROM enderecos WHERE id_end_passageiro = '$id_end_passageiro'";
-        if (mysqli_query($conexao, $sql)) {
+        if (mysqli_query($link, $sql)) {
             $sql = "DELETE FROM passageiros WHERE id_passageiro = '$id_passageiro'";
-            if (mysqli_query($conexao, $sql)) {
+            if (mysqli_query($link, $sql)) {
                 $sql = "DELETE FROM usuarios WHERE id_usuario = '$id_usuario'";
-                if (mysqli_query($conexao, $sql)) {
+                if (mysqli_query($link, $sql)) {
                     echo "Usuário excluido com sucesso";
-                    $url="aprovar_motoristas.php";
+                    $url="aprovar_passageiros.php";
                     echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
                     echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
                 }
             }
         } else {
-            echo "Erro ao excluir: " . mysqli_error($conexao);
+            echo "Erro ao excluir: " . mysqli_error($link);
         }
     }else{
         $sql = "UPDATE usuarios SET aprovado = '$aprovado' WHERE cpf = '$cpf'";
-        if (mysqli_query($conexao, $sql)) {
+        if (mysqli_query($link, $sql)) {
             echo "Confirmado! <br>";
             $url="aprovar_passageiros.php";
             echo "<script type='text/javascript'>document.location.href='{$url}';</script>";

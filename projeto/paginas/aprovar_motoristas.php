@@ -1,11 +1,11 @@
 <?php
-require("cabecalho.php");
-include('../backend/pagina_restrita.php');
-pagina_motorista();
+require_once("cabecalho.php");
+$id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
+if($tipo_usuario!=2){ header('Location: ../index.php'); }
 if(!isset($_SESSION)){
   session_start();
 }
-$aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, imagem, rg, sexo, telefone, aprovado, cnh from usuarios, motoristas where aprovado = 0 and id_usuario = user_iduser");
+$aprovar_motoristas = $link->query("SELECT nome, sobrenome, email, cpf, imagem, rg, sexo, telefone, aprovado, cnh from usuarios, motoristas where aprovado = 0 and id_usuario = user_iduser");
 ?>
 
 <div class="container">
@@ -43,7 +43,7 @@ $aprovar_motoristas = $conexao->query("SELECT nome, sobrenome, email, cpf, image
           <td><?php echo $dado['telefone']; ?></td>
           <td><?php echo $dado['cnh']; ?></td>
           <input type="hidden" name="cpf" id="cpf" value="<?php echo $cpf; ?>">
-          <td><button type="submit" class="btn btn-primary btn-sm" name="aprovacao"> <a href="confirmar_usuario.php?cpf=<?php echo $cpf; ?>">confirmar</a></button></td>
+          <td><button type="submit" class="btn btn-dark btn-sm" name="aprovacao"> <a style="color: white;" href="confirmar_usuario.php?cpf=<?php echo $cpf; ?>">confirmar</a></button></td>
           <?php } ?>
         </form>
       </tbody>

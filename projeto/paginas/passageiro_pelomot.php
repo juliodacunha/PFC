@@ -1,20 +1,20 @@
 <?php
-include('../backend/pagina_restrita.php');
-pagina_motorista();
 include('../backend/Verifica_login.php');
 require("cabecalho.php");
+$id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
+if($tipo_usuario!=2){ header('Location: ../index.php'); }
 $id_usuario = $_SESSION['id'];
 
 
 //Abaixo o código de busca no banco de dados sobre o formulário de perfil do passageiro
 $email = $_SESSION['email'];
-$result = $conexao->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, curso, turma, matricula, cep, rua, numero, bairro, cidade, estado, complemento
-from usuarios, passageiros, enderecos;") or die($conexao->error);
+$result = $link->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, curso, turma, matricula, cep, rua, numero, bairro, cidade, estado, complemento
+from usuarios, passageiros, enderecos;") or die($link->error);
 $arrayPassageiro = $result->fetch_assoc();
 //Abaixo perfil motorista
-$resultMotorista = $conexao->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, cnh
+$resultMotorista = $link->query("SELECT nome, sobrenome, cpf, rg, telefone, email, senha, cnh
 from usuarios, motoristas
-where email = '$email' and user_iduser = id_usuario") or die($conexao->error);
+where email = '$email' and user_iduser = id_usuario") or die($link->error);
 $arrayMotorista = $resultMotorista->fetch_assoc();
 
 //IF para nao dar erro no HTML caso o usuário seja um passageiro e nao um motorista.
@@ -32,15 +32,15 @@ if (array_key_exists("cnh", $arrayMotorista)) {
     exit;
 }
 
-$consulta = $conexao->query("SELECT 
+$consulta = $link->query("SELECT 
 id_usuario, imagem, nome, sobrenome, telefone, email, sexo, bairro, rua, numero, complemento, id_passageiro, id_motorista_id 
 from usuarios, passageiros, enderecos 
-where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and aprovado = 1") or die ($conexao->error);
+where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and aprovado = 1") or die ($link->error);
 
 ?>
 <html lang="en">
 <head></head>
-<div class="container">
+<div class="container-fluid">
 <div class="table-responsive">
 <h3 class="register-heading my-5 mx-auto" style="font-family: 'CustomFont'; font-weight:normal; font-style:normal; font-size: 30PX; text-align: center;">Visualização dos dados de todos os passageiros</h3>
 
@@ -73,7 +73,7 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and aprova
       
     }
       
-    $descobrir_nome = $conexao->query("SELECT nome, sobrenome FROM usuarios, motoristas WHERE id_usuario = user_iduser and id_motorista = '$idmot'");
+    $descobrir_nome = $link->query("SELECT nome, sobrenome FROM usuarios, motoristas WHERE id_usuario = user_iduser and id_motorista = '$idmot'");
     while($info = $descobrir_nome->fetch_array()){
       $nomemotorista = $info['nome'];
     }
@@ -91,7 +91,7 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and aprova
         <option value="0">Não definido</option>
           <?php
           //puxar dado dos motoristas
-          $motorista = $conexao->query("select nome, sobrenome, cnh, id_motorista 
+          $motorista = $link->query("select nome, sobrenome, cnh, id_motorista 
                                       from usuarios, motoristas 
                                       where id_usuario = user_iduser and emp_idempresa = 1");
           while($informacao = $motorista->fetch_array()){ ?>
@@ -103,7 +103,7 @@ where id_usuario = id_usuario_id and id_passageiro = id_passageiro_id and aprova
       <td> <button type="submit" class="btn btn-primary btn-sm" name="alterar">Alterar</button></td>
     </form>
 
-    <td> <button type="submit" class="btn btn-primary btn-sm"><a href="../backend/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></button></td>
+    <td> <button type="submit" class="btn btn-danger btn-sm"><a style="color: white;" href="../backend/use_excluir.php?codigo=<?php echo $dado["id_passageiro"]; ?>">Excluir</a></button></td>
   
   </tbody>
   <?php }?>
@@ -121,7 +121,7 @@ if(isset($_GET['alterar'])){
     $sql = "UPDATE usuarios, passageiros 
     SET id_motorista_id = NULL
     WHERE id_usuario='$iduser' and id_usuario = id_usuario_id";
-    if (mysqli_query($conexao, $sql)) {
+    if (mysqli_query($link, $sql)) {
       $url="passageiro_pelomot.php";
       echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
       echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
@@ -134,12 +134,12 @@ if(isset($_GET['alterar'])){
     SET id_motorista_id = $novo_motorista
     WHERE id_usuario='$iduser' and id_usuario_id = '$iduser'";
 
-    if (mysqli_query($conexao, $sql)) {
+    if (mysqli_query($link, $sql)) {
       $url="passageiro_pelomot.php";
       echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
       echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $url . '">';
     } else {
-      echo "Erro ao atualizar: " . mysqli_error($conexao);
+      echo "Erro ao atualizar: " . mysqli_error($link);
     }
   }
 }

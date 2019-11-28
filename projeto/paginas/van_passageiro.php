@@ -1,16 +1,18 @@
 <?php
-include('../backend/pagina_restrita.php');
-pagina_motorista();
 require('cabecalho.php');
+$id_usuario = $_SESSION['id']; $query = "select tipuser_tip_user from usuarios where id_usuario = '$id_usuario'"; $result = mysqli_query($link, $query); $linha = mysqli_num_rows($result); $rows = []; $linha = mysqli_fetch_assoc($result); $rows[] = $linha; $tipo_usuario = $rows[0]['tipuser_tip_user'];
+if($tipo_usuario!=2){ header('Location: ../index.php'); }
+
+
 $id_usuario = $_SESSION['id'];
 $query = "SELECT id_motorista FROM usuarios, motoristas WHERE id_usuario = $id_usuario AND user_iduser = id_usuario"; 
-$result = mysqli_query($conexao, $query);
+$result = mysqli_query($link, $query);
 $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
 $rows[] = $linha;
 $id_motorista = $rows[0]['id_motorista'];
-$sql = $conexao->query("SELECT imagem, nome, sobrenome, rua, numero, bairro, complemento, cidade, cep, telefone, email, cpf, rg FROM usuarios, passageiros, enderecos WHERE id_usuario = id_usuario_id AND id_motorista_id = '$id_motorista' AND id_passageiro = id_passageiro_id ") or die ($conexao->error);
+$sql = $link->query("SELECT imagem, nome, sobrenome, rua, numero, bairro, complemento, cidade, cep, telefone, email, cpf, rg FROM usuarios, passageiros, enderecos WHERE id_usuario = id_usuario_id AND id_motorista_id = '$id_motorista' AND id_passageiro = id_passageiro_id ") or die ($link->error);
 ?>
 <html lang="en">
 <head>

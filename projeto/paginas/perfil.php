@@ -11,15 +11,15 @@ $id_usuario = $_SESSION['id'];
 
 //Abaixo o código de busca no banco de dados sobre o formulário de perfil do passageiro
 $email = $_SESSION['email'];
-$result = $conexao->query("SELECT imagem, nome, sobrenome, cpf, rg, telefone, email, senha, curso, turma, matricula, cep, rua, numero, bairro, cidade, estado, complemento
+$result = $link->query("SELECT imagem, nome, sobrenome, cpf, rg, telefone, email, senha, curso, turma, matricula, cep, rua, numero, bairro, cidade, estado, complemento
 from usuarios, passageiros, enderecos 
-where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_passageiro_id") or die($conexao->error);
+where email = '$email' and id_usuario_id = id_usuario and id_passageiro = id_passageiro_id") or die($link->error);
 $arrayPassageiro = $result->fetch_assoc();
 
 //Abaixo perfil motorista
-$resultMotorista = $conexao->query("SELECT imagem, nome, sobrenome, cpf, rg, telefone, email, senha, cnh
+$resultMotorista = $link->query("SELECT imagem, nome, sobrenome, cpf, rg, telefone, email, senha, cnh
 from usuarios, motoristas
-where email = '$email' and user_iduser = id_usuario") or die($conexao->error);
+where email = '$email' and user_iduser = id_usuario") or die($link->error);
 $arrayMotorista = $resultMotorista->fetch_assoc();
 
 //IF para nao dar erro no HTML caso o usuário seja um passageiro e nao um motorista.
@@ -38,14 +38,14 @@ if (array_key_exists("cnh", $arrayMotorista)) {
 }
 $id_usuario = $_SESSION['id'];
 $query = "SELECT id_motorista_id FROM usuarios, passageiros WHERE id_usuario = $id_usuario AND id_usuario = id_usuario_id"; 
-$result = mysqli_query($conexao, $query);
+$result = mysqli_query($link, $query);
 $linha = mysqli_num_rows($result);
 $rows = [];
 $linha = mysqli_fetch_assoc($result);
 $rows[] = $linha;
 $id_motorista = $rows[0]['id_motorista_id'];
 
-$descobrir_nome = $conexao->query("SELECT nome, sobrenome FROM usuarios, motoristas WHERE id_usuario = user_iduser and id_motorista = '$id_motorista'");
+$descobrir_nome = $link->query("SELECT nome, sobrenome FROM usuarios, motoristas WHERE id_usuario = user_iduser and id_motorista = '$id_motorista'");
 while($info = $descobrir_nome->fetch_array()){
   $nomemotorista = $info['nome']." ".$info['sobrenome'];
 }
@@ -197,7 +197,7 @@ while($info = $descobrir_nome->fetch_array()){
               </div>
               <?php endif  ?>
                 <form action="../backend/Perfil.php" method="POST" enctype="multipart/form-data">
-                  <div class="crud">
+                  <div class="table-responsive">
                   <table class="crud">
                   <tr>
                     <td>Nome</td>
@@ -221,7 +221,7 @@ while($info = $descobrir_nome->fetch_array()){
                   </tr>
                   <tr>
                     <td>Senha</td>
-                    <td><input type="password" class="form-control" value="<?php echo $row['senha']; ?>" placeholder="Senha" name="novosenha" required></td>
+                    <td><input type="password" class="form-control" value="<?php echo '<!>&&<!>'; ?>" placeholder="Nova senha" name="novosenha"></td>
                   </tr>
                   <?php if(isset ($row['cnh'])): ?>
                   <tr>

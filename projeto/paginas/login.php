@@ -36,7 +36,6 @@ if(isset($_SESSION['email'])){
                 <!-- Senha e registrar -->
                 <div id="formFooter">
                     <small class="form-text text-muted"><a href="cadastro_usuario.php">Não possui uma conta?</a></small>
-                    <small class="form-text text-muted"><a href="#">Esqueceu a senha?</a></small>
                 </div>
             </div>
         </div>

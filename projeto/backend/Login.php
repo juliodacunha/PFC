@@ -8,12 +8,12 @@ if(!isset($_SESSION)){
 if(isset($_POST['logar'])){
     if (!isset($_SESSION['email'])) {
         
-        $email = mysqli_real_escape_string($conexao, $_POST['email']);
-        $senha = mysqli_real_escape_string($conexao, $_POST['senha']);
+        $email = mysqli_real_escape_string($link, $_POST['email']);
+        $senha = md5(mysqli_real_escape_string($link, $_POST['senha']));
 
         //Linha abaixo para verificar se o usuário foi aprovado pelo motorista.
         $usuario_aprovado = "SELECT aprovado from usuarios where email = '$email'";
-        $resultado = mysqli_query($conexao, $usuario_aprovado);
+        $resultado = mysqli_query($link, $usuario_aprovado);
         $linha_resultado = mysqli_num_rows($resultado);
         //print_r($linha_resultado);
         $checar_array = [];
@@ -23,8 +23,8 @@ if(isset($_POST['logar'])){
         $usuario_aprovado = $checar_array[0]['aprovado'];
         
         if($usuario_aprovado == 1){    
-            $query = "select id_usuario, email, nome from usuarios where email = '$email' and senha = md5('$senha')"; 
-            $result = mysqli_query($conexao, $query);
+            $query = "select id_usuario, email, nome from usuarios where email = '$email' and senha = '$senha'"; 
+            $result = mysqli_query($link, $query);
             $linha = mysqli_num_rows($result);
             //print_r($linha);
         }else{
