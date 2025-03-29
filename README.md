@@ -1,4 +1,4 @@
-# PFC - 3INFO2 - 2019 - André Luiz de Oliveira, Iris Mebs Moraes e Julio Cezar da Cunha.
+# PFC - 3INFO2 - 2019.
 
 Para conseguir executar o código no Windows:
 - fazer download e a instalação do xampp e php
